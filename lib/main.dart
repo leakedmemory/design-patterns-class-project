@@ -1,7 +1,8 @@
-import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flame/game.dart';
+
+import 'package:design_patterns_project/my_game.dart';
 
 void main() {
-  final game = FlameGame();
-  runApp(GameWidget(game: game));
+  runApp(GameWidget(game: MyGame()));
 }
