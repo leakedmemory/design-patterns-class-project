@@ -21,6 +21,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/debug/
+    - assets/images/sets/
     - assets/images/player/
-    - assets/tiles/debug/
+    - assets/tiles/

@@ -14,8 +14,8 @@ class MyGame extends FlameGame
   Future<void> onLoad() async {
     await super.onLoad();
     camera.zoom = 2;
-    final mapComponent = await TiledComponent.load(
-        'debug/squared_map.tmx', Vector2.all(_tileSize));
+    final mapComponent =
+        await TiledComponent.load('map.tmx', Vector2.all(_tileSize));
     add(mapComponent);
     await add(_player);
   }
