@@ -7,16 +7,13 @@ import 'package:design_patterns_project/game/player/player.dart';
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
   late final TiledComponent _mapComponent;
-  static const _tileSize = 48.0;
+  static const _tileSize = 32.0;
   final _player = Player();
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    // camera.zoom = 1;
-    final cameraPosition = size / 3;
-    cameraPosition.y -= 200;
-    // camera.snapTo(-cameraPosition);
+    camera.zoom = 1.5;
     _mapComponent =
         await TiledComponent.load('map.tmx', Vector2.all(_tileSize));
     add(_mapComponent);

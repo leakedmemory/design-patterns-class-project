@@ -13,7 +13,7 @@ class Player extends SpriteComponent
   late final Subject<Set<String>, Set<LogicalKeyboardKey>> _keyboardListener;
   late final Observer<Set<String>> _movementObserver;
 
-  final _moveSpeed = 150.0;
+  final _moveSpeed = 125.0;
   final _velocity = Vector2.zero();
 
   Player() : super(size: Vector2.all(MyGame.tileSize)) {
@@ -24,11 +24,10 @@ class Player extends SpriteComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await gameRef.loadSprite(
-      'player/idle.png',
-      // srcSize: Vector2(MyGame.tileSize, MyGame.tileSize * 2)
-    );
-    position = Vector2.all(200);
+    sprite = await gameRef.loadSprite('player/idle.png',
+        srcSize: Vector2(MyGame.tileSize, MyGame.tileSize * 2));
+    size = Vector2(MyGame.tileSize, MyGame.tileSize * 2);
+    position = Vector2.all(190);
   }
 
   @override
