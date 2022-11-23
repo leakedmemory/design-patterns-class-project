@@ -3,7 +3,7 @@ import 'package:design_patterns_project/game/player/player.dart';
 
 class MovementObserver implements Observer<Set<String>> {
   late final Subject _subject;
-  late Player _player;
+  late final Player _player;
 
   late final Map<String, Function> _validMovements = {
     "A": () {
