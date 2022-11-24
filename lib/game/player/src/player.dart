@@ -1,5 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
 import 'package:design_patterns_project/game/my_game.dart';
@@ -7,7 +9,7 @@ import 'package:design_patterns_project/game/utils/observer.dart';
 import 'package:design_patterns_project/game/player/src/keyboard_listener.dart';
 import 'package:design_patterns_project/game/player/src/movement_observer.dart';
 
-class Player extends SpriteComponent
+class Player extends SpriteAnimationComponent
     with HasGameRef, KeyboardHandler, CollisionCallbacks {
   Vector2 _movement = Vector2.zero();
   late final Subject<Set<String>, Set<LogicalKeyboardKey>> _keyboardListener;
@@ -15,6 +17,15 @@ class Player extends SpriteComponent
 
   final _moveSpeed = 125.0;
   final _velocity = Vector2.zero();
+
+  late SpriteAnimation idleUpAnimation;
+  late SpriteAnimation idleDownAnimation;
+
+  late SpriteAnimation upAnimation;
+  late SpriteAnimation downAnimation;
+  late SpriteAnimationComponent player;
+  // 0 = up // 1 = left // 2 = right // 3 = down // 4 = idle
+  int direction = 0;
 
   Player() : super(size: Vector2.all(MyGame.tileSize)) {
     _keyboardListener = CustomKeyboardListener();
@@ -24,14 +35,28 @@ class Player extends SpriteComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await gameRef.loadSprite('player/idle.png',
-        srcSize: Vector2(MyGame.tileSize, MyGame.tileSize * 2));
-    size = Vector2(MyGame.tileSize, MyGame.tileSize * 2);
-    position = Vector2.all(190);
+    SpriteSheet sprite = SpriteSheet(
+        image: await Flame.images.load("player/test.png"),
+        srcSize: Vector2(48, 66));
+    // mudar
+    idleUpAnimation = sprite.createAnimation(row: 1, stepTime: 0.5, to: 1);
+    idleDownAnimation = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
+
+    upAnimation = sprite.createAnimation(row: 1, stepTime: 0.3);
+    downAnimation = sprite.createAnimation(row: 0, stepTime: 0.3);
+    size = Vector2(48, 96);
+
+    player = SpriteAnimationComponent()
+      ..animation = idleDownAnimation
+      ..position = Vector2(100, 200)
+      ..size = Vector2(48, 66);
+
+    add(player);
   }
 
   @override
   void update(double dt) {
+        
     _velocity.x = _movement.x * _moveSpeed;
     _velocity.y = _movement.y * _moveSpeed;
 
