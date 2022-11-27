@@ -1,10 +1,11 @@
+import 'package:flutter/services.dart';
+
 import 'package:design_patterns_project/game/utils/observer.dart';
-import 'package:design_patterns_project/game/player/player.dart';
+import 'package:design_patterns_project/game/player/src/player.dart';
 
 class MovementObserver implements Observer<Set<String>> {
-  late final Subject _subject;
+  late final Subject<Set<String>, Set<LogicalKeyboardKey>> _subject;
   late final Player _player;
-  String direction = "u";
 
   late final Map<String, Function> _validMovements = {
     "A": () {
@@ -15,15 +16,16 @@ class MovementObserver implements Observer<Set<String>> {
     },
     "W": () {
       _player.movement.y -= 1;
-      _player.player.animation = _player.upAnimation;
+      _player.animation = _player.upAnimation;
     },
     "S": () {
       _player.movement.y += 1;
-      _player.player.animation = _player.downAnimation;
+      _player.animation = _player.downAnimation;
     },
   };
 
-  MovementObserver(Subject subject, Player player) {
+  MovementObserver(
+      Subject<Set<String>, Set<LogicalKeyboardKey>> subject, Player player) {
     _subject = subject;
     subject.addObserver(this);
     _player = player;
@@ -31,20 +33,18 @@ class MovementObserver implements Observer<Set<String>> {
 
   @override
   void update(Set<String> keysPressed) {
-    switch (direction) {
-      case "u":
-        _player.player.animation = _player.idleUpAnimation;
-        break;
-      case "d":
-        _player.player.animation = _player.idleDownAnimation;
-        break;
+    if (keysPressed.isEmpty) {
+      _player.animation = _player.idle;
+    } else {
+      _move(keysPressed);
     }
+  }
 
+  void _move(Set<String> keysPressed) {
     for (final key in keysPressed) {
       final movement = _validMovements[key];
       if (movement != null) {
         movement();
-        direction = movement.toString().substring(175, 176);
       }
     }
   }

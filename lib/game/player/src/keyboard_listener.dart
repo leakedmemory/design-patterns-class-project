@@ -27,8 +27,8 @@ class CustomKeyboardListener
 
   Set<String> _parseInput() {
     final Set<String> keysLabel = {};
-    for (final keyPressed in _keysPressed) {
-      keysLabel.add(keyPressed.keyLabel);
+    for (final key in _keysPressed) {
+      keysLabel.add(key.keyLabel);
     }
 
     return keysLabel;

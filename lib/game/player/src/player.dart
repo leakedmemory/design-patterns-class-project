@@ -11,21 +11,16 @@ import 'package:design_patterns_project/game/player/src/movement_observer.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, KeyboardHandler, CollisionCallbacks {
-  Vector2 _movement = Vector2.zero();
   late final Subject<Set<String>, Set<LogicalKeyboardKey>> _keyboardListener;
   late final Observer<Set<String>> _movementObserver;
 
-  final _moveSpeed = 125.0;
-  final _velocity = Vector2.zero();
+  final _moveSpeed = 135.0;
+  Vector2 _movement = Vector2.zero();
+  Vector2 _velocity = Vector2.zero();
 
-  late SpriteAnimation idleUpAnimation;
-  late SpriteAnimation idleDownAnimation;
-
-  late SpriteAnimation upAnimation;
-  late SpriteAnimation downAnimation;
-  late SpriteAnimationComponent player;
-  // 0 = up // 1 = left // 2 = right // 3 = down // 4 = idle
-  int direction = 0;
+  late final SpriteAnimation idle;
+  late final SpriteAnimation upAnimation;
+  late final SpriteAnimation downAnimation;
 
   Player() : super(size: Vector2.all(MyGame.tileSize)) {
     _keyboardListener = CustomKeyboardListener();
@@ -38,27 +33,24 @@ class Player extends SpriteAnimationComponent
     SpriteSheet sprite = SpriteSheet(
         image: await Flame.images.load("player/test.png"),
         srcSize: Vector2(48, 66));
-    // mudar
-    idleUpAnimation = sprite.createAnimation(row: 1, stepTime: 0.5, to: 1);
-    idleDownAnimation = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
 
-    upAnimation = sprite.createAnimation(row: 1, stepTime: 0.3);
-    downAnimation = sprite.createAnimation(row: 0, stepTime: 0.3);
-    size = Vector2(48, 96);
+    idle = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
+    upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2);
+    downAnimation = sprite.createAnimation(row: 0, stepTime: 0.2);
 
-    player = SpriteAnimationComponent()
-      ..animation = idleDownAnimation
-      ..position = Vector2(100, 200)
-      ..size = Vector2(48, 66);
-
-    add(player);
+    animation = idle;
+    position = Vector2(100, 200);
+    size = Vector2(32, 64);
   }
 
   @override
   void update(double dt) {
-        
-    _velocity.x = _movement.x * _moveSpeed;
-    _velocity.y = _movement.y * _moveSpeed;
+    // não andar mais rápido na diagonal do que em apenas um eixo
+    if (_movement.x != 0 && _movement.y != 0) {
+      _velocity = _movement * _moveSpeed / 1.5;
+    } else {
+      _velocity = _movement * _moveSpeed;
+    }
 
     position += _velocity * dt;
     super.update(dt);
