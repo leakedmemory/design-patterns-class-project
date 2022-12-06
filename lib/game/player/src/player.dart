@@ -21,6 +21,7 @@ class Player extends SpriteAnimationComponent
   late final SpriteAnimation idle;
   late final SpriteAnimation upAnimation;
   late final SpriteAnimation downAnimation;
+  late ShapeHitbox hitbox;
 
   Player() : super(size: Vector2.all(MyGame.tileSize)) {
     _keyboardListener = CustomKeyboardListener();
@@ -34,6 +35,8 @@ class Player extends SpriteAnimationComponent
         image: await Flame.images.load("player/test.png"),
         srcSize: Vector2(48, 66));
 
+    hitbox = CircleHitbox();
+    add(hitbox);
     idle = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
     upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2);
     downAnimation = sprite.createAnimation(row: 0, stepTime: 0.2);
@@ -68,9 +71,10 @@ class Player extends SpriteAnimationComponent
   set movement(Vector2 m) => movement = m;
   Vector2 get movement => _movement;
 
-  // TODO: colisão com a borda da tela
-  // @override
-  // void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-  //   super.onCollision(intersectionPoints, other);
-  // }
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is ScreenHitbox) {
+
+    }
+  }
 }

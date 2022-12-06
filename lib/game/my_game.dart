@@ -1,3 +1,4 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -17,6 +18,7 @@ class MyGame extends FlameGame
     _mapComponent =
         await TiledComponent.load('map.tmx', Vector2.all(_tileSize));
     add(_mapComponent);
+    add(ScreenHitbox());
     await add(_player);
   }
 
