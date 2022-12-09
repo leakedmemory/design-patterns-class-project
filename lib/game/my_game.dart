@@ -4,12 +4,14 @@ import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import 'package:design_patterns_project/game/player/player.dart';
+import 'package:design_patterns_project/game/table/table.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
   late final TiledComponent _mapComponent;
   static const _tileSize = 32.0;
   final _player = Player();
+  final _table = Table();
 
   @override
   Future<void> onLoad() async {
@@ -20,6 +22,7 @@ class MyGame extends FlameGame
     add(_mapComponent);
     add(ScreenHitbox());
     await add(_player);
+    await add(_table);
   }
 
   static double get tileSize => _tileSize;
