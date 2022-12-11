@@ -1,3 +1,3 @@
 library components;
 
-export 'src/wall.dart';
+export "src/wall.dart";

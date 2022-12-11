@@ -1,7 +1,7 @@
-import 'package:flutter/services.dart';
+import "package:flutter/services.dart";
 
-import 'package:design_patterns_project/game/utils/observer.dart';
-import 'package:design_patterns_project/game/player/src/player.dart';
+import "package:design_patterns_project/game/utils/observer.dart";
+import "package:design_patterns_project/game/player/src/player.dart";
 
 class MovementObserver implements Observer<Set<String>> {
   late final Subject<Set<String>, Set<LogicalKeyboardKey>> _subject;

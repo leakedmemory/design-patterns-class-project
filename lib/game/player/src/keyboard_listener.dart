@@ -1,6 +1,6 @@
-import 'package:flutter/services.dart';
+import "package:flutter/services.dart";
 
-import 'package:design_patterns_project/game/utils/observer.dart';
+import "package:design_patterns_project/game/utils/observer.dart";
 
 class CustomKeyboardListener
     implements Subject<Set<String>, Set<LogicalKeyboardKey>> {

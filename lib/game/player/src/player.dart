@@ -1,13 +1,13 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-import 'package:flame/flame.dart';
-import 'package:flame/sprite.dart';
-import 'package:flutter/services.dart';
+import "package:flame/collisions.dart";
+import "package:flame/components.dart";
+import "package:flame/flame.dart";
+import "package:flame/sprite.dart";
+import "package:flutter/services.dart";
 
-import 'package:design_patterns_project/game/my_game.dart';
-import 'package:design_patterns_project/game/utils/observer.dart';
-import 'package:design_patterns_project/game/player/src/keyboard_listener.dart';
-import 'package:design_patterns_project/game/player/src/movement_observer.dart';
+import "package:design_patterns_project/game/my_game.dart";
+import "package:design_patterns_project/game/utils/observer.dart";
+import "package:design_patterns_project/game/player/src/keyboard_listener.dart";
+import "package:design_patterns_project/game/player/src/movement_observer.dart";
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, KeyboardHandler, CollisionCallbacks {

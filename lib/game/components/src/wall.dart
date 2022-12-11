@@ -1,7 +1,7 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
+import "package:flame/collisions.dart";
+import "package:flame/components.dart";
 
-import 'package:design_patterns_project/game/my_game.dart';
+import "package:design_patterns_project/game/my_game.dart";
 
 class Wall extends SpriteComponent with HasGameRef, CollisionCallbacks {
   late final MyGame _game;
