@@ -32,9 +32,9 @@ class MyGame extends FlameGame
     final bottomWall = Wall(this, "brown_bottom", Vector2(0, _tileSize));
 
     await add(mapComponent);
-    await add(_player);
     await add(topWall);
     await add(bottomWall);
+    await add(_player);
 
     camera.zoom = 1.5;
   }

@@ -3,7 +3,7 @@ import "package:flame/components.dart";
 
 import "package:design_patterns_project/game/my_game.dart";
 
-class Wall extends SpriteComponent with HasGameRef, CollisionCallbacks {
+class Wall extends SpriteComponent with CollisionCallbacks {
   late final MyGame _game;
   late final String _type;
   late final Vector2 _position;
