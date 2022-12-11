@@ -23,7 +23,7 @@ class Player extends SpriteAnimationComponent
   late final SpriteAnimation downAnimation;
   late ShapeHitbox hitbox;
 
-  Player() : super(size: Vector2.all(MyGame.tileSize)) {
+  Player(MyGame game) : super(size: Vector2.all(game.tileSize)) {
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
   }
@@ -71,10 +71,9 @@ class Player extends SpriteAnimationComponent
   set movement(Vector2 m) => movement = m;
   Vector2 get movement => _movement;
 
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is ScreenHitbox) {
-
-    }
-  }
+  // TODO: colisão com os blocos
+  // @override
+  // void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  //   if (other is ScreenHitbox) {}
+  // }
 }
