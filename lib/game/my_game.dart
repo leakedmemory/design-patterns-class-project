@@ -5,8 +5,8 @@ import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import 'player/player.dart';
-import 'components_maker/map_maker.dart';
-import 'components_maker/src/abstractions/maker.dart';
+import 'map_maker/map_maker.dart';
+import 'map_maker/src/abstractions/maker.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {

@@ -36,7 +36,10 @@ class WallMaker implements Maker<Wall> {
   List<Wall> _createBottomWalls() {
     List<Wall> walls = [];
     for (double x = 0; x < _game.mapWidth; x += _game.tileSize) {
-      walls.add(Wall(_game, 'white_bottom', Vector2(x, _game.mapHeight)));
+      // ignora tile da porta de entrada
+      if (x != _game.tileSize * 12) {
+        walls.add(Wall(_game, 'white_bottom', Vector2(x, _game.mapHeight)));
+      }
     }
 
     return walls;
