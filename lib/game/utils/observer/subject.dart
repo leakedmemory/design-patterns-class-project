@@ -1,4 +1,4 @@
-import 'package:design_patterns_project/game/utils/observer/observer.dart';
+import 'observer.dart';
 
 abstract class Subject<T, U> {
   late U state;

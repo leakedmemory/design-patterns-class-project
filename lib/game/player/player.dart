@@ -1,3 +1,3 @@
 library player;
 
-export "src/player.dart";
+export 'src/player.dart';

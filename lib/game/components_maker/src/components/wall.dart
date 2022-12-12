@@ -1,7 +1,7 @@
-import "package:flame/collisions.dart";
-import "package:flame/components.dart";
+import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
 
-import "package:design_patterns_project/game/my_game.dart";
+import '../../../my_game.dart';
 
 class Wall extends SpriteComponent with CollisionCallbacks {
   late final MyGame _game;
@@ -9,15 +9,15 @@ class Wall extends SpriteComponent with CollisionCallbacks {
   late final Vector2 _position;
 
   late final Map<String, Sprite> _wallTypes = {
-    "brown_top": _game.gameSprites(
+    'brown_top': _game.gameSprites(
         _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 9)),
-    "brown_bottom": _game.gameSprites(
+    'brown_bottom': _game.gameSprites(
         _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 10)),
-    "white_bottom": _game.gameSprites(_game.scenerySpritePath,
+    'white_bottom': _game.gameSprites(_game.scenerySpritePath,
         Vector2(_game.tileSize * 8, _game.tileSize * 3)),
-    "white_right": _game.gameSprites(_game.scenerySpritePath,
+    'white_right': _game.gameSprites(_game.scenerySpritePath,
         Vector2(_game.tileSize * 9, _game.tileSize * 2)),
-    "white_left": _game.gameSprites(_game.scenerySpritePath,
+    'white_left': _game.gameSprites(_game.scenerySpritePath,
         Vector2(_game.tileSize * 7, _game.tileSize * 2))
   };
 

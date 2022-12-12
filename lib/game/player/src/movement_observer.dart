@@ -1,24 +1,24 @@
-import "package:flutter/services.dart";
+import 'package:flutter/services.dart';
 
-import "package:design_patterns_project/game/utils/observer.dart";
-import "package:design_patterns_project/game/player/src/player.dart";
+import '../../utils/observer.dart';
+import 'player.dart';
 
 class MovementObserver implements Observer<Set<String>> {
   late final Subject<Set<String>, Set<LogicalKeyboardKey>> _subject;
   late final Player _player;
 
   late final Map<String, Function> _validMovements = {
-    "A": () {
+    'A': () {
       _player.movement.x -= 1;
     },
-    "D": () {
+    'D': () {
       _player.movement.x += 1;
     },
-    "W": () {
+    'W': () {
       _player.movement.y -= 1;
       _player.animation = _player.upAnimation;
     },
-    "S": () {
+    'S': () {
       _player.movement.y += 1;
       _player.animation = _player.downAnimation;
     },

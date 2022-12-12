@@ -3,5 +3,5 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     - always_declare_return_types
-    - always_use_package_imports
-    - prefer_double_quotes
+    - prefer_relative_imports
+    - prefer_single_quotes
