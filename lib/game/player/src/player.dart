@@ -4,6 +4,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
+import '../../map_maker/map_maker.dart';
 import '../../my_game.dart';
 import 'keyboard_listener.dart';
 import 'movement_observer.dart';
@@ -12,6 +13,8 @@ class Player extends SpriteAnimationComponent
     with HasGameRef, KeyboardHandler, CollisionCallbacks {
   late final CustomKeyboardListener _keyboardListener;
   late final MovementObserver _movementObserver;
+
+  late final MyGame _game;
 
   final _moveSpeed = 135.0;
   Vector2 _movement = Vector2.zero();
@@ -23,6 +26,7 @@ class Player extends SpriteAnimationComponent
   late ShapeHitbox hitbox;
 
   Player(MyGame game) : super(size: Vector2.all(game.tileSize)) {
+    _game = game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
   }
@@ -34,7 +38,7 @@ class Player extends SpriteAnimationComponent
         image: await Flame.images.load('player/test.png'),
         srcSize: Vector2(48, 66));
 
-    hitbox = CircleHitbox();
+    hitbox = RectangleHitbox();
     add(hitbox);
     idle = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
     upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2);
@@ -42,7 +46,7 @@ class Player extends SpriteAnimationComponent
 
     animation = idle;
     position = Vector2(100, 200);
-    size = Vector2(32, 64);
+    size = Vector2(_game.tileSize, _game.tileSize * 2);
   }
 
   @override
@@ -70,9 +74,26 @@ class Player extends SpriteAnimationComponent
   set movement(Vector2 m) => movement = m;
   Vector2 get movement => _movement;
 
-  // TODO: colisão com os blocos
-  // @override
-  // void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-  //   if (other is ScreenHitbox) {}
-  // }
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is Wall) {
+      if (position.y < _game.tileSize) {
+        position.y = _game.tileSize;
+      }
+
+      if (position.y > _game.mapHeight - _game.tileSize * 2) {
+        position.y = _game.mapHeight - _game.tileSize * 2;
+      }
+
+      if (position.x < 0) {
+        position.x = 0;
+      }
+
+      if (position.x > _game.mapWidth - _game.tileSize) {
+        position.x = _game.mapWidth - _game.tileSize;
+      }
+    }
+
+    super.onCollision(intersectionPoints, other);
+  }
 }

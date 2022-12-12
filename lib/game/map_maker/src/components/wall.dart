@@ -24,4 +24,10 @@ class Wall extends MyComponent with CollisionCallbacks {
     _game = game;
     sprite = _types[type];
   }
+
+  @override
+  Future<void> onLoad() async {
+    super.onLoad();
+    add(RectangleHitbox()..collisionType = CollisionType.passive);
+  }
 }
