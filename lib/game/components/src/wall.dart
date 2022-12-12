@@ -10,9 +10,15 @@ class Wall extends SpriteComponent with CollisionCallbacks {
 
   late final Map<String, Sprite> _wallTypes = {
     "brown_top": _game.gameSprites(
-        _game.scenerySpritePath, Vector2(0, _game.tileSize * 9)),
+        _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 9)),
     "brown_bottom": _game.gameSprites(
-        _game.scenerySpritePath, Vector2(0, _game.tileSize * 10)),
+        _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 10)),
+    "white_bottom": _game.gameSprites(_game.scenerySpritePath,
+        Vector2(_game.tileSize * 8, _game.tileSize * 3)),
+    "white_right": _game.gameSprites(_game.scenerySpritePath,
+        Vector2(_game.tileSize * 9, _game.tileSize * 2)),
+    "white_left": _game.gameSprites(_game.scenerySpritePath,
+        Vector2(_game.tileSize * 7, _game.tileSize * 2))
   };
 
   Wall(MyGame game, String type, Vector2 position) {
