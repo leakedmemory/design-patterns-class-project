@@ -5,14 +5,13 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
 import '../../my_game.dart';
-import '../../utils/observer.dart';
 import 'keyboard_listener.dart';
 import 'movement_observer.dart';
 
 class Player extends SpriteAnimationComponent
     with HasGameRef, KeyboardHandler, CollisionCallbacks {
-  late final Subject<Set<String>, Set<LogicalKeyboardKey>> _keyboardListener;
-  late final Observer<Set<String>> _movementObserver;
+  late final CustomKeyboardListener _keyboardListener;
+  late final MovementObserver _movementObserver;
 
   final _moveSpeed = 135.0;
   Vector2 _movement = Vector2.zero();
@@ -62,7 +61,7 @@ class Player extends SpriteAnimationComponent
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _movement = Vector2.zero();
-    _keyboardListener.state = keysPressed;
+    _keyboardListener.keysPressed = keysPressed;
     _keyboardListener.notifyObservers();
 
     return true;

@@ -1,23 +1,19 @@
 import 'package:flutter/services.dart';
 
-import '../../utils/observer.dart';
+import 'movement_observer.dart';
 
-class CustomKeyboardListener
-    implements Subject<Set<String>, Set<LogicalKeyboardKey>> {
-  final List<Observer<Set<String>>> _observers = [];
-  static late Set<LogicalKeyboardKey> _keysPressed;
+class CustomKeyboardListener {
+  final List<MovementObserver> _observers = [];
+  late Set<LogicalKeyboardKey> keysPressed;
 
-  @override
-  void addObserver(Observer<Set<String>> observer) {
+  void addObserver(MovementObserver observer) {
     _observers.add(observer);
   }
 
-  @override
-  void removeObserver(Observer<Set<String>> observer) {
+  void removeObserver(MovementObserver observer) {
     _observers.remove(observer);
   }
 
-  @override
   void notifyObservers() {
     final keysLabel = _parseInput();
     for (final observer in _observers) {
@@ -27,15 +23,10 @@ class CustomKeyboardListener
 
   Set<String> _parseInput() {
     final Set<String> keysLabel = {};
-    for (final key in _keysPressed) {
+    for (final key in keysPressed) {
       keysLabel.add(key.keyLabel);
     }
 
     return keysLabel;
   }
-
-  @override
-  Set<LogicalKeyboardKey> get state => _keysPressed;
-  @override
-  set state(Set<LogicalKeyboardKey> newState) => _keysPressed = newState;
 }

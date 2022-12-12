@@ -1,10 +1,8 @@
-import 'package:flutter/services.dart';
-
-import '../../utils/observer.dart';
+import 'keyboard_listener.dart';
 import 'player.dart';
 
-class MovementObserver implements Observer<Set<String>> {
-  late final Subject<Set<String>, Set<LogicalKeyboardKey>> _subject;
+class MovementObserver {
+  late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
 
   late final Map<String, Function> _validMovements = {
@@ -24,14 +22,12 @@ class MovementObserver implements Observer<Set<String>> {
     },
   };
 
-  MovementObserver(
-      Subject<Set<String>, Set<LogicalKeyboardKey>> subject, Player player) {
-    _subject = subject;
+  MovementObserver(subject, Player player) {
+    _keyboardListener = subject;
     subject.addObserver(this);
     _player = player;
   }
 
-  @override
   void update(Set<String> keysPressed) {
     if (keysPressed.isEmpty) {
       _player.animation = _player.idle;
@@ -49,5 +45,5 @@ class MovementObserver implements Observer<Set<String>> {
     }
   }
 
-  Subject get subject => _subject;
+  CustomKeyboardListener get keyboardListener => _keyboardListener;
 }
