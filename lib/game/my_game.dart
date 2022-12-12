@@ -5,7 +5,8 @@ import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import 'player/player.dart';
-import 'components_maker/components_maker.dart';
+import 'components_maker/map_maker.dart';
+import 'components_maker/src/abstractions/maker.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
@@ -34,7 +35,7 @@ class MyGame extends FlameGame
     final map = await TiledComponent.load('map.tmx', Vector2.all(_tileSize));
     await add(map);
 
-    final componentsMaker = ComponentsMaker(this);
+    final Maker componentsMaker = MapMaker(this);
     final components = componentsMaker.make();
     for (var c in components) {
       await add(c);

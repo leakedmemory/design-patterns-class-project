@@ -1,13 +1,13 @@
 import 'package:flame/components.dart';
 
-import 'wall_maker.dart';
-import '../../utils/maker.dart';
+import 'abstractions/maker.dart';
 import '../../my_game.dart';
+import 'wall_maker.dart';
 
-class ComponentsMaker implements Maker<Component> {
-  late final WallMaker _wallMaker;
+class MapMaker implements Maker<Component> {
+  late final Maker _wallMaker;
 
-  ComponentsMaker(MyGame game) {
+  MapMaker(MyGame game) {
     _wallMaker = WallMaker(game);
   }
 

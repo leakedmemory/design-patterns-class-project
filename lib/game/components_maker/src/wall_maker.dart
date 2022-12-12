@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 
-import '../../utils/maker.dart';
+import 'abstractions/maker.dart';
 import '../../my_game.dart';
 import 'components/wall.dart';
 
