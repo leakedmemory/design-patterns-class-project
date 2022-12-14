@@ -20,34 +20,83 @@ class Player extends SpriteAnimationComponent
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
-  late final SpriteAnimation idle;
-  late final SpriteAnimation upAnimation;
-  late final SpriteAnimation downAnimation;
+  late SpriteSheet sprite;
+  late SpriteAnimation idleUp;
+  late SpriteAnimation idleDown;
+  late SpriteAnimation idleRight;
+  late SpriteAnimation idleLeft;
+
+  late SpriteAnimation upAnimation;
+  late SpriteAnimation downAnimation;
+  late SpriteAnimation rightAnimation;
+  late SpriteAnimation leftAnimation;
+
+  late SpriteAnimation atackUpAnimation;
+  late SpriteAnimation atackDownAnimation;
+  late SpriteAnimation atackRightAnimation;
+  late SpriteAnimation atackLeftAnimation;
+
   late ShapeHitbox hitbox;
+  int life = 2;
+  late int rowAnimation;
 
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
+    debugMode = true;
+  }
+
+  Future<void> skin(SpriteSheet sprite) async {
+    // sem boné
+    life == 1 ? rowAnimation = 1 : rowAnimation = 0;
+
+    idleUp =
+        sprite.createAnimation(row: rowAnimation + 6, stepTime: 0.5, to: 1);
+    idleDown =
+        sprite.createAnimation(row: rowAnimation + 0, stepTime: 0.5, to: 1);
+    // mudar quando lucas mandar a nova idle
+    idleRight = sprite.createAnimation(
+        row: rowAnimation + 8, stepTime: 0.5, from: 5, to: 6);
+    idleLeft = sprite.createAnimation(
+        row: rowAnimation + 8, stepTime: 0.5, from: 6, to: 7);
+
+    upAnimation =
+        sprite.createAnimation(row: rowAnimation + 8, stepTime: 0.2, to: 2);
+    downAnimation = sprite.createAnimation(
+        row: rowAnimation + 8, stepTime: 0.2, from: 2, to: 4);
+    rightAnimation = sprite.createAnimation(
+        row: rowAnimation + 8, stepTime: 0.2, from: 4, to: 6);
+    leftAnimation = sprite.createAnimation(
+        row: rowAnimation + 8, stepTime: 0.2, from: 6, to: 8);
+
+    atackUpAnimation =
+        sprite.createAnimation(row: rowAnimation + 4, stepTime: 0.1);
+    atackDownAnimation =
+        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+    atackRightAnimation =
+        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+    atackLeftAnimation =
+        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+
+    if (life == 2) {
+      animation = idleDown;
+    }
+    
+    size = Vector2.all(_game.tileSizeInPixels * 2);
   }
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    SpriteSheet sprite = SpriteSheet(
+    sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
         srcSize: Vector2.all(_game.tileSizeInPixels));
 
-    hitbox = RectangleHitbox();
+    hitbox = RectangleHitbox(size: Vector2(32, 32), position: center);
     add(hitbox);
-
-    idle = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
-    upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2);
-    downAnimation = sprite.createAnimation(row: 0, stepTime: 0.2);
-
-    animation = idle;
-    position = Vector2(100, 200);
-    size = Vector2.all(_game.tileSizeInPixels * 2);
+    skin(sprite);
+    position = Vector2(100, 250);
   }
 
   @override
