@@ -4,10 +4,10 @@ import 'abstractions/maker.dart';
 import '../../my_game.dart';
 import 'components/wall.dart';
 
-class WallMaker implements Maker<Wall> {
+class WallsMaker implements Maker<Wall> {
   late final MyGame _game;
 
-  WallMaker(MyGame game) {
+  WallsMaker(MyGame game) {
     _game = game;
   }
 

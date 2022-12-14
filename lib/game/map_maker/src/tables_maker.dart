@@ -4,10 +4,10 @@ import '../../my_game.dart';
 import 'abstractions/maker.dart';
 import 'components/table.dart';
 
-class TableMaker implements Maker<Table> {
+class TablesMaker implements Maker<Table> {
   late final MyGame _game;
 
-  TableMaker(MyGame game) {
+  TablesMaker(MyGame game) {
     _game = game;
   }
 
