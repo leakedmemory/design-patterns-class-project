@@ -21,6 +21,7 @@ class ComputersMaker implements Maker<Computer> {
     List<Computer> computers = [
       ..._squaredTable1Monitors(),
       ..._mainTableComputer(),
+      ..._verticalTableComputer(),
     ];
 
     return computers;
@@ -57,6 +58,15 @@ class ComputersMaker implements Maker<Computer> {
     computer.add(_setSpriteTileOnMap(
         ComputerType.threeHorizontalWhiteMonitorsRight, 17, 1));
     computer.add(_setSpriteTileOnMap(ComputerType.horizontalKeyboard, 16, 2));
+
+    return computer;
+  }
+
+  List<Computer> _verticalTableComputer() {
+    List<Computer> computer = [];
+    computer.add(_setSpriteTileOnMap(ComputerType.diagonalNotebookTop, 20, 8));
+    computer
+        .add(_setSpriteTileOnMap(ComputerType.diagonalNotebookBottom, 20, 9));
 
     return computer;
   }

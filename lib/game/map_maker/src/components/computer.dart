@@ -16,8 +16,8 @@ enum ComputerType {
   rightDiagonalBlackMonitor,
   rightDiagonalWhiteMonitor,
 
-  verticalBlackMonitor,
-  verticalKeyboard,
+  diagonalNotebookTop,
+  diagonalNotebookBottom,
 
   threeHorizontalWhiteMonitorsLeft,
   threeHorizontalWhiteMonitorsMiddle,
@@ -53,6 +53,10 @@ class Computer extends MyComponent {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(15, 13)),
     ComputerType.horizontalKeyboard:
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(14, 14)),
+    ComputerType.diagonalNotebookTop:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(15, 17)),
+    ComputerType.diagonalNotebookBottom:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(15, 18)),
   };
 
   Computer(MyGame game, ComputerType type, Vector2 position)
