@@ -10,15 +10,15 @@ class MapMaker implements Maker<Component> {
   late final Maker _wallMaker;
 
   MapMaker(MyGame game) {
-    _tableMaker = TableMaker(game);
     _wallMaker = WallMaker(game);
+    _tableMaker = TableMaker(game);
   }
 
   @override
   List<Component> make() {
     List<Component> components = [
-      ..._tableMaker.make(),
       ..._wallMaker.make(),
+      ..._tableMaker.make(),
     ];
 
     return components;

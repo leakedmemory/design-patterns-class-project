@@ -42,7 +42,7 @@ class MyGame extends FlameGame
 
     final Maker componentsMaker = MapMaker(this);
     final components = componentsMaker.make();
-    for (var c in components) {
+    for (Component c in components) {
       await add(c);
     }
 
