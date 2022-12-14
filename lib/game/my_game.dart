@@ -10,8 +10,8 @@ import 'map_maker/src/abstractions/maker.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
-  final _scenerySpritesPath = 'sets/scenery.png';
-  final _objectsSpritesPath = 'sets/objects.png';
+  final _scenerySpritesPath = 'scenery.png';
+  final _objectsSpritesPath = 'objects.png';
 
   final _tileSize = 32.0;
   late final _mapWidth = _tileSize * 22;
