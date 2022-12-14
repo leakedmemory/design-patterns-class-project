@@ -20,6 +20,7 @@ class ComputersMaker implements Maker<Computer> {
   List<Computer> make() {
     List<Computer> computers = [
       ..._squaredTable1Monitors(),
+      ..._mainTableComputer(),
     ];
 
     return computers;
@@ -45,5 +46,18 @@ class ComputersMaker implements Maker<Computer> {
         _setSpriteTileOnMap(ComputerType.rightDiagonalWhiteMonitor, 17, 7));
 
     return monitors;
+  }
+
+  List<Computer> _mainTableComputer() {
+    List<Computer> computer = [];
+    computer.add(_setSpriteTileOnMap(
+        ComputerType.threeHorizontalWhiteMonitorsLeft, 15, 1));
+    computer.add(_setSpriteTileOnMap(
+        ComputerType.threeHorizontalWhiteMonitorsMiddle, 16, 1));
+    computer.add(_setSpriteTileOnMap(
+        ComputerType.threeHorizontalWhiteMonitorsRight, 17, 1));
+    computer.add(_setSpriteTileOnMap(ComputerType.horizontalKeyboard, 16, 2));
+
+    return computer;
   }
 }

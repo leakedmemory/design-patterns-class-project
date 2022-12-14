@@ -45,6 +45,14 @@ class Computer extends MyComponent {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(12, 35)),
     ComputerType.rightDiagonalWhiteMonitor:
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(12, 36)),
+    ComputerType.threeHorizontalWhiteMonitorsLeft:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(13, 13)),
+    ComputerType.threeHorizontalWhiteMonitorsMiddle:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(14, 13)),
+    ComputerType.threeHorizontalWhiteMonitorsRight:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(15, 13)),
+    ComputerType.horizontalKeyboard:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(14, 14)),
   };
 
   Computer(MyGame game, ComputerType type, Vector2 position)
