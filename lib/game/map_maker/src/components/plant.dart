@@ -1,3 +1,4 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/input.dart';
 import 'package:flame/widgets.dart';
 
@@ -17,7 +18,7 @@ enum PlantType {
   cactusBottom,
 }
 
-class Plant extends MyComponent {
+class Plant extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<PlantType, Sprite> _types = {
