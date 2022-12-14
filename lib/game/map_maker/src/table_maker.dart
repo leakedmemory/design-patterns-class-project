@@ -25,6 +25,7 @@ class TableMaker implements Maker<Table> {
       ..._squaredTable2(),
       ..._verticalTable(),
       ..._mainTable(),
+      ..._miniTable(),
     ];
 
     return tables;
@@ -130,6 +131,16 @@ class TableMaker implements Maker<Table> {
 
     table.add(_setSpriteTileOnMap(TableType.topRightCorner, 18, 1));
     table.add(_setSpriteTileOnMap(TableType.bottomRightCorner, 18, 2));
+
+    return table;
+  }
+
+  List<Table> _miniTable() {
+    List<Table> table = [];
+    table.add(_setSpriteTileOnMap(TableType.topLeftCornerMini, 2, 1));
+    table.add(_setSpriteTileOnMap(TableType.topRightCornerMini, 3, 1));
+    table.add(_setSpriteTileOnMap(TableType.bottomLeftCornerMini, 2, 2));
+    table.add(_setSpriteTileOnMap(TableType.bottomRightCornerMini, 3, 2));
 
     return table;
   }

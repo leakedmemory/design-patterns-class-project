@@ -19,6 +19,11 @@ enum TableType {
   bottomLeftCorner,
   bottomCorner,
   bottomRightCorner,
+
+  topLeftCornerMini,
+  topRightCornerMini,
+  bottomLeftCornerMini,
+  bottomRightCornerMini,
 }
 
 class Table extends MyComponent with CollisionCallbacks {
@@ -51,6 +56,14 @@ class Table extends MyComponent with CollisionCallbacks {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(2, 6)),
     TableType.bottomRightCorner:
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(3, 6)),
+    TableType.topLeftCornerMini:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(6, 22)),
+    TableType.topRightCornerMini:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(7, 22)),
+    TableType.bottomLeftCornerMini:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(6, 23)),
+    TableType.bottomRightCornerMini:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(7, 23)),
   };
 
   Table(MyGame game, TableType type, Vector2 position) : super(game, position) {
