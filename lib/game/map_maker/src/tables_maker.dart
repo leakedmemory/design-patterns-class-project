@@ -137,10 +137,12 @@ class TablesMaker implements Maker<Table> {
 
   List<Table> _miniTable() {
     List<Table> table = [];
-    table.add(_setSpriteTileOnMap(TableType.topLeftCornerMini, 2, 1));
-    table.add(_setSpriteTileOnMap(TableType.topRightCornerMini, 3, 1));
-    table.add(_setSpriteTileOnMap(TableType.bottomLeftCornerMini, 2, 2));
-    table.add(_setSpriteTileOnMap(TableType.bottomRightCornerMini, 3, 2));
+    table.add(_setSpriteTileOnMap(TableType.topLeftCornerCoffee, 2, 0));
+    table.add(_setSpriteTileOnMap(TableType.topRightCornerCoffee, 3, 0));
+    table.add(_setSpriteTileOnMap(TableType.middleLeftCornerCoffee, 2, 1));
+    table.add(_setSpriteTileOnMap(TableType.middleRightCornerCoffee, 3, 1));
+    table.add(_setSpriteTileOnMap(TableType.bottomLeftCornerCoffee, 2, 2));
+    table.add(_setSpriteTileOnMap(TableType.bottomRightCornerCoffee, 3, 2));
 
     return table;
   }

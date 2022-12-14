@@ -20,10 +20,12 @@ enum TableType {
   bottomCorner,
   bottomRightCorner,
 
-  topLeftCornerMini,
-  topRightCornerMini,
-  bottomLeftCornerMini,
-  bottomRightCornerMini,
+  topLeftCornerCoffee,
+  topRightCornerCoffee,
+  middleLeftCornerCoffee,
+  middleRightCornerCoffee,
+  bottomLeftCornerCoffee,
+  bottomRightCornerCoffee,
 }
 
 class Table extends MyComponent with CollisionCallbacks {
@@ -56,14 +58,18 @@ class Table extends MyComponent with CollisionCallbacks {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(2, 6)),
     TableType.bottomRightCorner:
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(3, 6)),
-    TableType.topLeftCornerMini:
-        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(6, 22)),
-    TableType.topRightCornerMini:
-        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(7, 22)),
-    TableType.bottomLeftCornerMini:
-        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(6, 23)),
-    TableType.bottomRightCornerMini:
-        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(7, 23)),
+    TableType.topLeftCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(10, 38)),
+    TableType.topRightCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(11, 38)),
+    TableType.middleLeftCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(10, 39)),
+    TableType.middleRightCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(11, 39)),
+    TableType.bottomLeftCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(10, 40)),
+    TableType.bottomRightCornerCoffee:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(11, 40)),
   };
 
   Table(MyGame game, TableType type, Vector2 position) : super(game, position) {
