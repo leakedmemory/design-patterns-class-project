@@ -11,6 +11,9 @@ enum PrinterType {
   coloredPrinterWithPCBottomMiddle,
   coloredPrinterWithPCTopRight,
   coloredPrinterWithPCBottomRight,
+
+  verticalBlackPrinterTop,
+  verticalBlackPrinterBottom,
 }
 
 class Printer extends MyComponent {
@@ -29,6 +32,10 @@ class Printer extends MyComponent {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(12, 30)),
     PrinterType.coloredPrinterWithPCBottomRight:
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(12, 31)),
+    PrinterType.verticalBlackPrinterTop:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(13, 36)),
+    PrinterType.verticalBlackPrinterBottom:
+        _game.gameSprites(_game.objectsSpritePath, getSpriteTile(13, 37)),
   };
 
   Printer(MyGame game, PrinterType type, Vector2 position)

@@ -20,6 +20,7 @@ class PrintersMaker implements Maker<Printer> {
   List<Printer> make() {
     List<Printer> printers = [
       ..._coloredPrinter(),
+      ..._verticalPrinter(),
     ];
 
     return printers;
@@ -39,6 +40,16 @@ class PrintersMaker implements Maker<Printer> {
         _setSpriteTileOnMap(PrinterType.coloredPrinterWithPCTopRight, 10, 7));
     printer.add(_setSpriteTileOnMap(
         PrinterType.coloredPrinterWithPCBottomRight, 10, 8));
+
+    return printer;
+  }
+
+  List<Printer> _verticalPrinter() {
+    List<Printer> printer = [];
+    printer
+        .add(_setSpriteTileOnMap(PrinterType.verticalBlackPrinterTop, 21, 7));
+    printer.add(
+        _setSpriteTileOnMap(PrinterType.verticalBlackPrinterBottom, 21, 8));
 
     return printer;
   }
