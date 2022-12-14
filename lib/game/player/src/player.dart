@@ -25,7 +25,7 @@ class Player extends SpriteAnimationComponent
   late final SpriteAnimation downAnimation;
   late ShapeHitbox hitbox;
 
-  Player(MyGame game) : super(size: Vector2.all(game.tileSize)) {
+  Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
@@ -45,7 +45,7 @@ class Player extends SpriteAnimationComponent
 
     animation = idle;
     position = Vector2(100, 200);
-    size = Vector2(_game.tileSize, _game.tileSize * 2);
+    size = Vector2(_game.tileSizeInPixels, _game.tileSizeInPixels * 2);
   }
 
   @override
@@ -76,20 +76,20 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Wall) {
-      if (position.y < _game.tileSize) {
-        position.y = _game.tileSize;
+      if (position.y < _game.tileSizeInPixels) {
+        position.y = _game.tileSizeInPixels;
       }
 
-      if (position.y > _game.mapHeight - _game.tileSize * 2) {
-        position.y = _game.mapHeight - _game.tileSize * 2;
+      if (position.y > _game.mapHeightInPixels - _game.tileSizeInPixels * 2) {
+        position.y = _game.mapHeightInPixels - _game.tileSizeInPixels * 2;
       }
 
       if (position.x < 0) {
         position.x = 0;
       }
 
-      if (position.x > _game.mapWidth - _game.tileSize) {
-        position.x = _game.mapWidth - _game.tileSize;
+      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels) {
+        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels;
       }
     }
 

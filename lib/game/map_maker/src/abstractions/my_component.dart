@@ -15,6 +15,10 @@ abstract class MyComponent extends SpriteComponent {
   Future<void> onLoad() async {
     super.onLoad();
     position = _position;
-    size = Vector2.all(_game.tileSize);
+    size = Vector2.all(_game.tileSizeInPixels);
+  }
+
+  Vector2 getSpriteTile(int x, int y) {
+    return Vector2(_game.tileSizeInPixels * x, _game.tileSizeInPixels * y);
   }
 }

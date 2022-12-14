@@ -11,11 +11,20 @@ class TableMaker implements Maker<Table> {
     _game = game;
   }
 
+  Table _setSpriteTileOnMap(TableType type, double x, double y) {
+    return Table(_game, type,
+        Vector2(_game.tileSizeInPixels * x, _game.tileSizeInPixels * y));
+  }
+
   @override
   List<Table> make() {
     List<Table> tables = [
       ..._tableWithTurn(),
-      ..._longTable(),
+      ..._trophiesTable(),
+      ..._squaredTable1(),
+      ..._squaredTable2(),
+      ..._verticalTable(),
+      ..._mainTable(),
     ];
 
     return tables;
@@ -23,51 +32,57 @@ class TableMaker implements Maker<Table> {
 
   List<Table> _tableWithTurn() {
     List<Table> table = [];
-    table.add(Table(
-        _game, 'double_feet', Vector2(_game.tileSize * 2, _game.tileSize * 9)));
-    table.add(Table(_game, 'turn_to_right',
-        Vector2(_game.tileSize * 2, _game.tileSize * 8)));
-    table.add(Table(_game, 'left_above_turn',
-        Vector2(_game.tileSize * 2, _game.tileSize * 7)));
-    table.add(Table(_game, 'left_corner_turn',
-        Vector2(_game.tileSize * 2, _game.tileSize * 6)));
-    table.add(Table(_game, 'bottom_corner',
-        Vector2(_game.tileSize * 3, _game.tileSize * 8)));
-    table.add(Table(_game, 'bottom_corner',
-        Vector2(_game.tileSize * 4, _game.tileSize * 8)));
-    table.add(Table(_game, 'bottom_right_corner_turn',
-        Vector2(_game.tileSize * 5, _game.tileSize * 8)));
-    table.add(Table(
-        _game, 'center', Vector2(_game.tileSize * 3, _game.tileSize * 7)));
-    table.add(Table(
-        _game, 'center', Vector2(_game.tileSize * 4, _game.tileSize * 7)));
-    table.add(Table(_game, 'right_corner',
-        Vector2(_game.tileSize * 5, _game.tileSize * 7)));
-    table.add(Table(
-        _game, 'top_corner', Vector2(_game.tileSize * 3, _game.tileSize * 6)));
-    table.add(Table(
-        _game, 'top_corner', Vector2(_game.tileSize * 4, _game.tileSize * 6)));
-    table.add(Table(_game, 'top_right_corner_turn',
-        Vector2(_game.tileSize * 5, _game.tileSize * 6)));
+    table.add(_setSpriteTileOnMap(TableType.doubleFeet, 2, 9));
+    table.add(_setSpriteTileOnMap(TableType.turnToRight, 2, 8));
+    table.add(_setSpriteTileOnMap(TableType.leftAboveTurn, 2, 7));
+    table.add(_setSpriteTileOnMap(TableType.leftCornerTurn, 2, 6));
+    table.add(_setSpriteTileOnMap(TableType.bottomCorner, 3, 8));
+    table.add(_setSpriteTileOnMap(TableType.bottomCorner, 4, 8));
+    table.add(_setSpriteTileOnMap(TableType.bottomRightCornerTurn, 5, 8));
+    table.add(_setSpriteTileOnMap(TableType.center, 3, 7));
+    table.add(_setSpriteTileOnMap(TableType.center, 4, 7));
+    table.add(_setSpriteTileOnMap(TableType.rightCorner, 5, 7));
+    table.add(_setSpriteTileOnMap(TableType.topCorner, 3, 6));
+    table.add(_setSpriteTileOnMap(TableType.topCorner, 4, 6));
+    table.add(_setSpriteTileOnMap(TableType.topRightCornerTurn, 5, 6));
 
     return table;
   }
 
-  List<Table> _longTable() {
+  List<Table> _trophiesTable() {
     List<Table> table = [];
-    table.add(Table(_game, 'bottom_left_corner',
-        Vector2(_game.tileSize * 2, _game.tileSize * 12)));
-    table.add(Table(_game, 'top_left_corner',
-        Vector2(_game.tileSize * 2, _game.tileSize * 11)));
-    for (double i = 1; i <= 7; i++) {
-      final x = _game.tileSize * 2 + _game.tileSize * i;
-      table.add(Table(_game, 'bottom_corner', Vector2(x, _game.tileSize * 12)));
-      table.add(Table(_game, 'top_corner', Vector2(x, _game.tileSize * 11)));
+    table.add(_setSpriteTileOnMap(TableType.bottomLeftCorner, 2, 12));
+    table.add(_setSpriteTileOnMap(TableType.topLeftCorner, 2, 11));
+    for (double i = 3; i <= 5; i++) {
+      table.add(_setSpriteTileOnMap(TableType.bottomCorner, i, 12));
+      table.add(_setSpriteTileOnMap(TableType.topCorner, i, 11));
     }
-    table.add(Table(_game, 'top_right_corner',
-        Vector2(_game.tileSize * 10, _game.tileSize * 11)));
-    table.add(Table(_game, 'bottom_right_corner',
-        Vector2(_game.tileSize * 10, _game.tileSize * 12)));
+    table.add(_setSpriteTileOnMap(TableType.topRightCorner, 6, 11));
+    table.add(_setSpriteTileOnMap(TableType.bottomRightCorner, 6, 12));
+
+    return table;
+  }
+
+  List<Table> _squaredTable1() {
+    List<Table> table = [];
+
+    return table;
+  }
+
+  List<Table> _squaredTable2() {
+    List<Table> table = [];
+
+    return table;
+  }
+
+  List<Table> _verticalTable() {
+    List<Table> table = [];
+
+    return table;
+  }
+
+  List<Table> _mainTable() {
+    List<Table> table = [];
 
     return table;
   }

@@ -13,13 +13,17 @@ class MyGame extends FlameGame
   final _scenerySpritesPath = 'scenery.png';
   final _objectsSpritesPath = 'objects.png';
 
-  final _tileSize = 32.0;
-  late final _mapWidth = _tileSize * 22;
-  late final _mapHeight = _tileSize * 19;
+  final _mapWidthInTiles = 22.0;
+  final _mapHeightInTiles = 19.0;
+  final _tileSizeInPixels = 32.0;
+  late final _mapWidthInPixels = _tileSizeInPixels * _mapWidthInTiles;
+  late final _mapHeightInPixels = _tileSizeInPixels * _mapHeightInTiles;
 
-  double get tileSize => _tileSize;
-  double get mapWidth => _mapWidth;
-  double get mapHeight => _mapHeight;
+  double get mapWidthInTiles => _mapWidthInTiles;
+  double get mapHeightInTiles => _mapHeightInTiles;
+  double get tileSizeInPixels => _tileSizeInPixels;
+  double get mapWidthInPixels => _mapWidthInPixels;
+  double get mapHeightInPixels => _mapHeightInPixels;
 
   late final _player = Player(this);
 
@@ -32,7 +36,8 @@ class MyGame extends FlameGame
     await Flame.images.load(_scenerySpritesPath);
     await Flame.images.load(_objectsSpritesPath);
 
-    final map = await TiledComponent.load('map.tmx', Vector2.all(_tileSize));
+    final map =
+        await TiledComponent.load('map.tmx', Vector2.all(_tileSizeInPixels));
     await add(map);
 
     final Maker componentsMaker = MapMaker(this);
@@ -48,6 +53,6 @@ class MyGame extends FlameGame
 
   Sprite gameSprites(String spritePath, Vector2 position) {
     return Sprite(Flame.images.fromCache(spritePath),
-        srcPosition: position, srcSize: Vector2.all(_tileSize));
+        srcPosition: position, srcSize: Vector2.all(_tileSizeInPixels));
   }
 }

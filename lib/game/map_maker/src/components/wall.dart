@@ -4,23 +4,31 @@ import 'package:flame/components.dart';
 import '../../../my_game.dart';
 import '../abstractions/my_component.dart';
 
+enum WallType {
+  brownTop,
+  brownBottom,
+  whiteBottom,
+  whiteRight,
+  whiteLeft,
+}
+
 class Wall extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
-  late final Map<String, Sprite> _types = {
-    'brown_top': _game.gameSprites(
-        _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 9)),
-    'brown_bottom': _game.gameSprites(
-        _game.scenerySpritePath, Vector2(_game.tileSize, _game.tileSize * 10)),
-    'white_bottom': _game.gameSprites(_game.scenerySpritePath,
-        Vector2(_game.tileSize * 8, _game.tileSize * 3)),
-    'white_right': _game.gameSprites(_game.scenerySpritePath,
-        Vector2(_game.tileSize * 9, _game.tileSize * 2)),
-    'white_left': _game.gameSprites(_game.scenerySpritePath,
-        Vector2(_game.tileSize * 7, _game.tileSize * 2))
+  late final Map<WallType, Sprite> _types = {
+    WallType.brownTop:
+        _game.gameSprites(_game.scenerySpritePath, getSpriteTile(1, 9)),
+    WallType.brownBottom:
+        _game.gameSprites(_game.scenerySpritePath, getSpriteTile(1, 10)),
+    WallType.whiteBottom:
+        _game.gameSprites(_game.scenerySpritePath, getSpriteTile(8, 3)),
+    WallType.whiteRight:
+        _game.gameSprites(_game.scenerySpritePath, getSpriteTile(9, 2)),
+    WallType.whiteLeft:
+        _game.gameSprites(_game.scenerySpritePath, getSpriteTile(7, 2)),
   };
 
-  Wall(MyGame game, String type, Vector2 position) : super(game, position) {
+  Wall(MyGame game, WallType type, Vector2 position) : super(game, position) {
     _game = game;
     sprite = _types[type];
   }

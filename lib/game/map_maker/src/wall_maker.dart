@@ -11,6 +11,11 @@ class WallMaker implements Maker<Wall> {
     _game = game;
   }
 
+  Wall _setSpriteTileOnMap(WallType type, double x, double y) {
+    return Wall(_game, type,
+        Vector2(_game.tileSizeInPixels * x, _game.tileSizeInPixels * y));
+  }
+
   @override
   List<Wall> make() {
     List<Wall> walls = [
@@ -25,9 +30,9 @@ class WallMaker implements Maker<Wall> {
 
   List<Wall> _createTopWalls() {
     List<Wall> walls = [];
-    for (double x = 0; x < _game.mapWidth; x += _game.tileSize) {
-      walls.add(Wall(_game, 'brown_top', Vector2(x, 0)));
-      walls.add(Wall(_game, 'brown_bottom', Vector2(x, _game.tileSize)));
+    for (double x = 0; x < _game.mapWidthInTiles; x++) {
+      walls.add(_setSpriteTileOnMap(WallType.brownTop, x, 0));
+      walls.add(_setSpriteTileOnMap(WallType.brownBottom, x, 1));
     }
 
     return walls;
@@ -35,10 +40,11 @@ class WallMaker implements Maker<Wall> {
 
   List<Wall> _createBottomWalls() {
     List<Wall> walls = [];
-    for (double x = 0; x < _game.mapWidth; x += _game.tileSize) {
+    for (double x = 0; x < _game.mapWidthInTiles; x++) {
       // ignora tile da porta de entrada
-      if (x != _game.tileSize * 12) {
-        walls.add(Wall(_game, 'white_bottom', Vector2(x, _game.mapHeight)));
+      if (x != 12) {
+        walls.add(_setSpriteTileOnMap(
+            WallType.whiteBottom, x, _game.mapHeightInTiles));
       }
     }
 
@@ -47,8 +53,8 @@ class WallMaker implements Maker<Wall> {
 
   List<Wall> _createRightWalls() {
     List<Wall> walls = [];
-    for (double y = 0; y < _game.mapHeight; y += _game.tileSize) {
-      walls.add(Wall(_game, 'white_right', Vector2(0, y)));
+    for (double y = 0; y < _game.mapHeightInTiles; y++) {
+      walls.add(_setSpriteTileOnMap(WallType.whiteRight, 0, y));
     }
 
     return walls;
@@ -56,9 +62,9 @@ class WallMaker implements Maker<Wall> {
 
   List<Wall> _createLeftWalls() {
     List<Wall> walls = [];
-    for (double y = 0; y < _game.mapHeight; y += _game.tileSize) {
-      walls.add(Wall(
-          _game, 'white_left', Vector2(_game.mapWidth - _game.tileSize, y)));
+    for (double y = 0; y < _game.mapHeightInTiles; y++) {
+      walls.add(_setSpriteTileOnMap(
+          WallType.whiteLeft, _game.mapWidthInTiles - 1, y));
     }
 
     return walls;
