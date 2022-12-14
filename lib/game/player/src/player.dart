@@ -35,17 +35,19 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     super.onLoad();
     SpriteSheet sprite = SpriteSheet(
-        image: await Flame.images.load('player.png'), srcSize: Vector2(48, 66));
+        image: await Flame.images.load('player.png'),
+        srcSize: Vector2.all(_game.tileSizeInPixels));
 
     hitbox = RectangleHitbox();
     add(hitbox);
+
     idle = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
     upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2);
     downAnimation = sprite.createAnimation(row: 0, stepTime: 0.2);
 
     animation = idle;
     position = Vector2(100, 200);
-    size = Vector2(_game.tileSizeInPixels, _game.tileSizeInPixels * 2);
+    size = Vector2.all(_game.tileSizeInPixels * 2);
   }
 
   @override
