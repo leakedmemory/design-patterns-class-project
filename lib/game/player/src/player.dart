@@ -35,7 +35,7 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     super.onLoad();
     SpriteSheet sprite = SpriteSheet(
-        image: await Flame.images.load('test.png'), srcSize: Vector2(48, 66));
+        image: await Flame.images.load('player.png'), srcSize: Vector2(48, 66));
 
     hitbox = RectangleHitbox();
     add(hitbox);
