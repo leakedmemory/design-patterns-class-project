@@ -92,13 +92,13 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    hitbox = RectangleHitbox(
+        size: Vector2.all(_game.tileSizeInPixels), position: center);
     sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
         srcSize: Vector2.all(_game.tileSizeInPixels));
-    skin(sprite);
-
-    hitbox = CircleHitbox(radius: _game.tileSizeInPixels / 2, position: center);
     add(hitbox);
+    skin(sprite);
 
     position = Vector2(125, 475);
     priority = 1;
@@ -140,12 +140,12 @@ class Player extends SpriteAnimationComponent
         position.y = _game.mapHeightInPixels - _game.tileSizeInPixels;
       }
 
-      if (position.x < 0) {
-        position.x = 0;
+      if (position.x < -_game.tileSizeInPixels / 2) {
+        position.x = -_game.tileSizeInPixels / 2;
       }
 
-      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels * 2) {
-        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels * 2;
+      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5) {
+        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5;
       }
     }
 
