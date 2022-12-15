@@ -2,20 +2,19 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:flutter/services.dart';
-import '../player/player.dart';
 
-import '../my_game.dart';
-import '../player/src/player.dart';
+import '../../../player/player.dart';
+import '../../../my_game.dart';
+import '../../../player/src/player.dart';
 
-class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
+class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
 
-  Vector2 _velocity = Vector2.zero();
+  final Vector2 _velocity = Vector2.zero();
 
-  late ShapeHitbox hitbox;
+  late final ShapeHitbox hitbox;
 
-  Cpu(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
+  CPU(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
     debugMode = true;
   }
@@ -33,7 +32,7 @@ class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
     add(hitbox);
 
     animation = sprite.createAnimation(row: 1, stepTime: 0.2, to: 1);
-    position = Vector2(300, 250);
+    position = Vector2(300, 300);
     size = Vector2.all(_game.tileSizeInPixels * 2);
 
     add(TimerComponent(
@@ -60,8 +59,7 @@ class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
             other.health = 1;
             other.skin(other.sprite);
           } else {
-            print("morreu");
-            print("s");
+            print('morreu');
           }
         }
       }

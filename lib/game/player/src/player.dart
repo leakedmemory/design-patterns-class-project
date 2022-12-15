@@ -10,8 +10,9 @@ import 'keyboard_listener.dart';
 import 'movement_observer.dart';
 
 class Player extends SpriteAnimationComponent
-    with HasGameRef, KeyboardHandler, CollisionCallbacks {
+    with KeyboardHandler, CollisionCallbacks {
   late final CustomKeyboardListener _keyboardListener;
+  // ignore: unused_field
   late final MovementObserver _movementObserver;
 
   late final MyGame _game;
@@ -20,25 +21,26 @@ class Player extends SpriteAnimationComponent
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
-  late SpriteSheet sprite;
-  late SpriteAnimation idleUp;
-  late SpriteAnimation idleDown;
-  late SpriteAnimation idleRight;
-  late SpriteAnimation idleLeft;
+  late final SpriteSheet sprite;
+  late final SpriteAnimation idleUp;
+  late final SpriteAnimation idleDown;
+  late final SpriteAnimation idleRight;
+  late final SpriteAnimation idleLeft;
 
-  late SpriteAnimation upAnimation;
-  late SpriteAnimation downAnimation;
-  late SpriteAnimation rightAnimation;
-  late SpriteAnimation leftAnimation;
+  late final SpriteAnimation upAnimation;
+  late final SpriteAnimation downAnimation;
+  late final SpriteAnimation rightAnimation;
+  late final SpriteAnimation leftAnimation;
 
-  late SpriteAnimation atackUpAnimation;
-  late SpriteAnimation atackDownAnimation;
-  late SpriteAnimation atackRightAnimation;
-  late SpriteAnimation atackLeftAnimation;
+  late final SpriteAnimation attackUpAnimation;
+  late final SpriteAnimation attackDownAnimation;
+  late final SpriteAnimation attackRightAnimation;
+  late final SpriteAnimation attackLeftAnimation;
 
   late ShapeHitbox hitbox;
-  int health = 2;
   late int rowAnimation;
+
+  int health = 2;
 
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
@@ -70,13 +72,13 @@ class Player extends SpriteAnimationComponent
     leftAnimation = sprite.createAnimation(
         row: rowAnimation + 8, stepTime: 0.2, from: 6, to: 8);
 
-    atackUpAnimation =
+    attackUpAnimation =
         sprite.createAnimation(row: rowAnimation + 4, stepTime: 0.1);
-    atackDownAnimation =
+    attackDownAnimation =
         sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
-    atackRightAnimation =
+    attackRightAnimation =
         sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
-    atackLeftAnimation =
+    attackLeftAnimation =
         sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
 
     if (health == 2) {
@@ -92,11 +94,14 @@ class Player extends SpriteAnimationComponent
     sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
         srcSize: Vector2.all(_game.tileSizeInPixels));
-
-    hitbox = RectangleHitbox(size: Vector2(32, 32), position: center);
-    add(hitbox);
     skin(sprite);
-    position = Vector2(100, 250);
+
+    hitbox = RectangleHitbox(
+        size: Vector2(_game.tileSizeInPixels, _game.tileSizeInPixels),
+        position: center);
+    add(hitbox);
+
+    position = Vector2(200, 300);
     priority = 1;
   }
 

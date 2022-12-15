@@ -5,6 +5,22 @@ class MovementObserver {
   late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
 
+  void attack() {
+    if ((_player.animation == _player.upAnimation) |
+        (_player.animation == _player.idleUp)) {
+      _player.animation = _player.attackUpAnimation;
+    } else if ((_player.animation == _player.downAnimation) |
+        (_player.animation == _player.idleDown)) {
+      _player.animation = _player.attackDownAnimation;
+    } else if ((_player.animation == _player.rightAnimation) |
+        (_player.animation == _player.idleRight)) {
+      _player.animation = _player.attackRightAnimation;
+    } else if ((_player.animation == _player.leftAnimation) |
+        (_player.animation == _player.idleLeft)) {
+      _player.animation = _player.attackLeftAnimation;
+    }
+  }
+
   late final Map<String, Function> _validMovements = {
     'A': () {
       _player.movement.x -= 1;
@@ -23,16 +39,7 @@ class MovementObserver {
       _player.animation = _player.downAnimation;
     },
     ' ': () {
-      if ((_player.animation == _player.upAnimation) | (_player.animation == _player.idleUp)) {
-        _player.animation = _player.atackUpAnimation;
-      } else if ((_player.animation == _player.downAnimation) | (_player.animation == _player.idleDown)) {
-        _player.animation = _player.atackDownAnimation;
-      } else if ((_player.animation == _player.rightAnimation) | 
-      (_player.animation == _player.idleRight)) {
-        _player.animation = _player.atackRightAnimation;
-      } else if ((_player.animation == _player.leftAnimation) | (_player.animation == _player.idleLeft)) {
-        _player.animation = _player.atackLeftAnimation;
-      }
+      attack();
     },
   };
 
@@ -46,14 +53,11 @@ class MovementObserver {
     if (keysPressed.isEmpty) {
       if (_player.animation == _player.upAnimation) {
         _player.animation = _player.idleUp;
-      } 
-      else if (_player.animation == _player.downAnimation) {
+      } else if (_player.animation == _player.downAnimation) {
         _player.animation = _player.idleDown;
-      }
-      else if (_player.animation == _player.rightAnimation){
+      } else if (_player.animation == _player.rightAnimation) {
         _player.animation = _player.idleRight;
-      }
-      else if (_player.animation == _player.leftAnimation){
+      } else if (_player.animation == _player.leftAnimation) {
         _player.animation = _player.idleLeft;
       }
     } else {
