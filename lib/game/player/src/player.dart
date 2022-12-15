@@ -47,7 +47,7 @@ class Player extends SpriteAnimationComponent
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
 
-    debugMode = true;
+    // debugMode = true;
   }
 
   Future<void> skin(SpriteSheet sprite) async {
@@ -99,7 +99,7 @@ class Player extends SpriteAnimationComponent
 
     hitbox = CircleHitbox(radius: _game.tileSizeInPixels / 2, position: center);
     add(hitbox);
-    skin(sprite);
+
     position = Vector2(125, 475);
     priority = 1;
   }
@@ -149,7 +149,8 @@ class Player extends SpriteAnimationComponent
       }
     }
 
-    //falta fazer colisao com as mesas, isso ai funciona mas fica como se quisesse entrar nas bordas da sprite
+    //? TODO: falta fazer colisão com as mesas, isso aí funciona, mas fica como
+    //? se quisesse entrar nas bordas da sprite
     if (other is Table) {
       // if (intersectionPoints.length == 2) {
       //   final mid = (intersectionPoints.elementAt(0) +

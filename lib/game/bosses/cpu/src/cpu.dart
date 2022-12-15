@@ -19,7 +19,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   CPU(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
 
-    debugMode = true;
+    // debugMode = true;
   }
 
   @override
