@@ -37,7 +37,7 @@ class Player extends SpriteAnimationComponent
   late SpriteAnimation atackLeftAnimation;
 
   late ShapeHitbox hitbox;
-  int life = 2;
+  int health = 2;
   late int rowAnimation;
 
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
@@ -49,7 +49,7 @@ class Player extends SpriteAnimationComponent
 
   Future<void> skin(SpriteSheet sprite) async {
     // sem boné
-    life == 1 ? rowAnimation = 1 : rowAnimation = 0;
+    health == 1 ? rowAnimation = 1 : rowAnimation = 0;
 
     idleUp =
         sprite.createAnimation(row: rowAnimation + 6, stepTime: 0.5, to: 1);
@@ -79,7 +79,7 @@ class Player extends SpriteAnimationComponent
     atackLeftAnimation =
         sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
 
-    if (life == 2) {
+    if (health == 2) {
       animation = idleDown;
     }
     

@@ -20,6 +20,8 @@ class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
     debugMode = true;
   }
 
+  bool canDamage = false;
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -33,6 +35,13 @@ class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
     animation = sprite.createAnimation(row: 1, stepTime: 0.2, to: 1);
     position = Vector2(300, 250);
     size = Vector2.all(_game.tileSizeInPixels * 2);
+
+    add(TimerComponent(
+        period: 2,
+        repeat: true,
+        onTick: () {
+          canDamage = true;
+        }));
   }
 
   @override
@@ -45,8 +54,16 @@ class Cpu extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {
       if (position.x - 50 < other.position.x) {
-        other.life = 1;
-        other.skin(other.sprite);
+        if (canDamage) {
+          canDamage = false;
+          if (other.health != 1) {
+            other.health = 1;
+            other.skin(other.sprite);
+          } else {
+            print("morreu");
+            print("s");
+          }
+        }
       }
     }
 
