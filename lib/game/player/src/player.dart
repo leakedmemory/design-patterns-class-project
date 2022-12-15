@@ -46,6 +46,7 @@ class Player extends SpriteAnimationComponent
     _game = game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
+
     debugMode = true;
   }
 

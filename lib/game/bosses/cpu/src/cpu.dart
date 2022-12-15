@@ -14,12 +14,13 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
 
   late final ShapeHitbox hitbox;
 
+  bool _canDamage = false;
+
   CPU(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
+
     debugMode = true;
   }
-
-  bool canDamage = false;
 
   @override
   Future<void> onLoad() async {
@@ -39,7 +40,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
         period: 2,
         repeat: true,
         onTick: () {
-          canDamage = true;
+          _canDamage = true;
         }));
   }
 
@@ -53,8 +54,8 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {
       if (position.x - 50 < other.position.x) {
-        if (canDamage) {
-          canDamage = false;
+        if (_canDamage) {
+          _canDamage = false;
           if (other.health != 1) {
             other.health = 1;
             other.skin(other.sprite);
