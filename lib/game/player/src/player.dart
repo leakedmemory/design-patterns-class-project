@@ -97,12 +97,10 @@ class Player extends SpriteAnimationComponent
         srcSize: Vector2.all(_game.tileSizeInPixels));
     skin(sprite);
 
-    hitbox = RectangleHitbox(
-        size: Vector2(_game.tileSizeInPixels, _game.tileSizeInPixels),
-        position: center);
+    hitbox = CircleHitbox(radius: _game.tileSizeInPixels / 2, position: center);
     add(hitbox);
-
-    position = Vector2(200, 300);
+    skin(sprite);
+    position = Vector2(125, 475);
     priority = 1;
   }
 
@@ -138,17 +136,32 @@ class Player extends SpriteAnimationComponent
         position.y = _game.tileSizeInPixels;
       }
 
-      if (position.y > _game.mapHeightInPixels - _game.tileSizeInPixels * 2) {
-        position.y = _game.mapHeightInPixels - _game.tileSizeInPixels * 2;
+      if (position.y > _game.mapHeightInPixels - _game.tileSizeInPixels) {
+        position.y = _game.mapHeightInPixels - _game.tileSizeInPixels;
       }
 
       if (position.x < 0) {
         position.x = 0;
       }
 
-      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels) {
-        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels;
+      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels * 2) {
+        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels * 2;
       }
+    }
+
+    //falta fazer colisao com as mesas, isso ai funciona mas fica como se quisesse entrar nas bordas da sprite
+    if (other is Table) {
+      // if (intersectionPoints.length == 2) {
+      //   final mid = (intersectionPoints.elementAt(0) +
+      //           intersectionPoints.elementAt(1)) /
+      //       2;
+
+      //   final collisionNormal = absoluteCenter - mid;
+      //   final separationDistance = (size.x / 4) - collisionNormal.length;
+      //   collisionNormal.normalize();
+
+      //   position += collisionNormal.scaled(separationDistance);
+      // }
     }
 
     super.onCollision(intersectionPoints, other);

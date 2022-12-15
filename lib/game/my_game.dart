@@ -48,8 +48,7 @@ class MyGame extends FlameGame
     await add(_player);
     await add(_cpu);
 
-    camera.viewport = FixedResolutionViewport(
-        Vector2(_map.width, _map.height + _tileSizeInPixels));
+    camera.viewport = FixedResolutionViewport(Vector2(_map.width, _map.height + _tileSizeInPixels));
   }
 
   Sprite gameSprites(String spritePath, Vector2 position) {

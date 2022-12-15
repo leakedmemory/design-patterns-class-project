@@ -76,5 +76,6 @@ class Table extends MyComponent with CollisionCallbacks {
       : super(game, position, priority) {
     _game = game;
     sprite = _types[type];
+    add(RectangleHitbox()..collisionType = CollisionType.passive);
   }
 }
