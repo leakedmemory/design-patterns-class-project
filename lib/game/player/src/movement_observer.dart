@@ -5,7 +5,7 @@ class MovementObserver {
   late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
 
-  void attack() {
+  void _attack() {
     if ((_player.animation == _player.upAnimation) |
         (_player.animation == _player.idleUp)) {
       _player.animation = _player.attackUpAnimation;
@@ -39,7 +39,7 @@ class MovementObserver {
       _player.animation = _player.downAnimation;
     },
     ' ': () {
-      attack();
+      _attack();
     },
   };
 
