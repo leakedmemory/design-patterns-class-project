@@ -21,21 +21,21 @@ class Player extends SpriteAnimationComponent
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
-  late final SpriteSheet sprite;
-  late final SpriteAnimation idleUp;
-  late final SpriteAnimation idleDown;
-  late final SpriteAnimation idleRight;
-  late final SpriteAnimation idleLeft;
+  late SpriteSheet sprite;
+  late SpriteAnimation idleUp;
+  late SpriteAnimation idleDown;
+  late SpriteAnimation idleRight;
+  late SpriteAnimation idleLeft;
 
-  late final SpriteAnimation upAnimation;
-  late final SpriteAnimation downAnimation;
-  late final SpriteAnimation rightAnimation;
-  late final SpriteAnimation leftAnimation;
+  late SpriteAnimation upAnimation;
+  late SpriteAnimation downAnimation;
+  late SpriteAnimation rightAnimation;
+  late SpriteAnimation leftAnimation;
 
-  late final SpriteAnimation attackUpAnimation;
-  late final SpriteAnimation attackDownAnimation;
-  late final SpriteAnimation attackRightAnimation;
-  late final SpriteAnimation attackLeftAnimation;
+  late SpriteAnimation attackUpAnimation;
+  late SpriteAnimation attackDownAnimation;
+  late SpriteAnimation attackRightAnimation;
+  late SpriteAnimation attackLeftAnimation;
 
   late ShapeHitbox hitbox;
   late int rowAnimation;
@@ -53,7 +53,6 @@ class Player extends SpriteAnimationComponent
   Future<void> skin(SpriteSheet sprite) async {
     // sem boné
     health == 1 ? rowAnimation = 1 : rowAnimation = 0;
-
     idleUp =
         sprite.createAnimation(row: rowAnimation + 6, stepTime: 0.5, to: 1);
     idleDown =
