@@ -8,9 +8,11 @@ class MovementObserver {
   late final Map<String, Function> _validMovements = {
     'A': () {
       _player.movement.x -= 1;
+      _player.animation = _player.leftAnimation;
     },
     'D': () {
       _player.movement.x += 1;
+      _player.animation = _player.rightAnimation;
     },
     'W': () {
       _player.movement.y -= 1;
@@ -19,6 +21,18 @@ class MovementObserver {
     'S': () {
       _player.movement.y += 1;
       _player.animation = _player.downAnimation;
+    },
+    ' ': () {
+      if ((_player.animation == _player.upAnimation) | (_player.animation == _player.idleUp)) {
+        _player.animation = _player.atackUpAnimation;
+      } else if ((_player.animation == _player.downAnimation) | (_player.animation == _player.idleDown)) {
+        _player.animation = _player.atackDownAnimation;
+      } else if ((_player.animation == _player.rightAnimation) | 
+      (_player.animation == _player.idleRight)) {
+        _player.animation = _player.atackRightAnimation;
+      } else if ((_player.animation == _player.leftAnimation) | (_player.animation == _player.idleLeft)) {
+        _player.animation = _player.atackLeftAnimation;
+      }
     },
   };
 
@@ -30,7 +44,18 @@ class MovementObserver {
 
   void update(Set<String> keysPressed) {
     if (keysPressed.isEmpty) {
-      _player.animation = _player.idle;
+      if (_player.animation == _player.upAnimation) {
+        _player.animation = _player.idleUp;
+      } 
+      else if (_player.animation == _player.downAnimation) {
+        _player.animation = _player.idleDown;
+      }
+      else if (_player.animation == _player.rightAnimation){
+        _player.animation = _player.idleRight;
+      }
+      else if (_player.animation == _player.leftAnimation){
+        _player.animation = _player.idleLeft;
+      }
     } else {
       _move(keysPressed);
     }

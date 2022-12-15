@@ -5,6 +5,7 @@ import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import 'player/player.dart';
+import "bosses/cpu.dart";
 import 'map_maker/map_maker.dart';
 import 'map_maker/src/abstractions/maker.dart';
 
@@ -26,6 +27,7 @@ class MyGame extends FlameGame
   double get mapHeightInPixels => _mapHeightInPixels;
 
   late final _player = Player(this);
+  late final _cpu = Cpu(this);
 
   String get scenerySpritePath => _scenerySpritesPath;
   String get objectsSpritePath => _objectsSpritesPath;
@@ -47,8 +49,9 @@ class MyGame extends FlameGame
     }
 
     await add(_player);
+    await add(_cpu);
 
-    camera.zoom = 1.5;
+    camera.viewport = FixedResolutionViewport(Vector2(map.width, map.height));
   }
 
   Sprite gameSprites(String spritePath, Vector2 position) {
