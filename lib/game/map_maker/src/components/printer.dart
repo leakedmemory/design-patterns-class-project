@@ -38,8 +38,8 @@ class Printer extends MyComponent {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(13, 37)),
   };
 
-  Printer(MyGame game, PrinterType type, Vector2 position)
-      : super(game, position) {
+  Printer(MyGame game, PrinterType type, Vector2 position, {int priority = 0})
+      : super(game, position, priority) {
     _game = game;
     sprite = _types[type];
   }

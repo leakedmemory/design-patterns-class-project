@@ -72,7 +72,8 @@ class Table extends MyComponent with CollisionCallbacks {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(11, 40)),
   };
 
-  Table(MyGame game, TableType type, Vector2 position) : super(game, position) {
+  Table(MyGame game, TableType type, Vector2 position, {int priority = 0})
+      : super(game, position, priority) {
     _game = game;
     sprite = _types[type];
   }

@@ -48,6 +48,7 @@ class Player extends SpriteAnimationComponent
     animation = idle;
     position = Vector2(100, 200);
     size = Vector2.all(_game.tileSizeInPixels * 2);
+    priority = 1;
   }
 
   @override

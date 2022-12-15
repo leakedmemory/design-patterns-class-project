@@ -59,8 +59,8 @@ class Computer extends MyComponent {
         _game.gameSprites(_game.objectsSpritePath, getSpriteTile(15, 18)),
   };
 
-  Computer(MyGame game, ComputerType type, Vector2 position)
-      : super(game, position) {
+  Computer(MyGame game, ComputerType type, Vector2 position, {int priority = 0})
+      : super(game, position, priority) {
     _game = game;
     sprite = _types[type];
   }

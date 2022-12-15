@@ -29,7 +29,8 @@ class Wall extends MyComponent with CollisionCallbacks {
         _game.gameSprites(_game.scenerySpritePath, getSpriteTile(8, 3)),
   };
 
-  Wall(MyGame game, WallType type, Vector2 position) : super(game, position) {
+  Wall(MyGame game, WallType type, Vector2 position, {int priority = 0})
+      : super(game, position, priority) {
     _game = game;
     sprite = _types[type];
   }
