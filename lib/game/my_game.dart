@@ -30,7 +30,7 @@ class MyGame extends FlameGame
   double get mapHeightInTiles => _mapHeightInTiles;
 
   late final player = Player(this);
-  late final _cpu = CPU(this);
+  late final _cpu = Cpu(this);
 
   String get scenerySpritePath => _scenerySpritesPath;
   String get objectsSpritePath => _objectsSpritesPath;

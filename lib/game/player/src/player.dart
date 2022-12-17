@@ -4,6 +4,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
+import '../../bosses/bosses.dart';
 import '../../map_maker/map_maker.dart';
 import '../../my_game.dart';
 import 'keyboard_listener.dart';
@@ -17,8 +18,9 @@ class Player extends SpriteAnimationComponent
 
   late final MyGame game;
 
+  bool _vulnerable = true;
   bool inCombat = false;
-  
+
   bool canWalk = false;
   final _moveSpeed = 140.0;
   Vector2 _movement = Vector2.zero();
@@ -118,6 +120,13 @@ class Player extends SpriteAnimationComponent
 
     position = Vector2(367, 557);
     priority = 1;
+
+    add(TimerComponent(
+        period: 3,
+        repeat: true,
+        onTick: () {
+          _vulnerable = true;
+        }));
   }
 
   @override
@@ -149,6 +158,12 @@ class Player extends SpriteAnimationComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is Cpu) {
+      if (_vulnerable) {
+        takeDamage();
+        _vulnerable = false; 
+      }
+    }
     if (other is Wall) {
       if (position.y < game.tileSizeInPixels) {
         position.y = game.tileSizeInPixels;

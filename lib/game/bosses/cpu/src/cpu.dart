@@ -7,18 +7,13 @@ import '../../../player/player.dart';
 import '../../../my_game.dart';
 import '../../../player/src/player.dart';
 
-class CPU extends SpriteAnimationComponent with CollisionCallbacks {
+class Cpu extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
-
   final Vector2 _velocity = Vector2.zero();
-
   late final ShapeHitbox hitbox;
 
-  bool _canDamage = true;
-
-  CPU(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
+  Cpu(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
-
     // debugMode = true;
   }
 
@@ -35,13 +30,6 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     animation = sprite.createAnimation(row: 1, stepTime: 0.2, to: 1);
     position = Vector2(300, 300);
     size = Vector2.all(_game.tileSizeInPixels * 2);
-
-    add(TimerComponent(
-        period: 3,
-        repeat: true,
-        onTick: () {
-          _canDamage = true;
-        }));
   }
 
   @override
@@ -53,10 +41,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {
-      if ((position.x - 50 < other.position.x) & (_canDamage)) {
-        other.takeDamage();
-        _canDamage = false; 
-      }
+      
     }
 
     super.onCollision(intersectionPoints, other);
