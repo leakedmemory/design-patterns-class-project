@@ -41,6 +41,12 @@ class MovementObserver {
     ' ': () {
       _attack();
     },
+    'F': () {
+      if (!_player.inCombat) {
+        _player.game.startCombat();
+        _player.inCombat = true;
+      }
+    },
   };
 
   MovementObserver(subject, Player player) {

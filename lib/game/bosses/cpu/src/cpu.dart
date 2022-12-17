@@ -14,7 +14,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
 
   late final ShapeHitbox hitbox;
 
-  bool _canDamage = false;
+  bool _canDamage = true;
 
   CPU(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
@@ -37,7 +37,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     size = Vector2.all(_game.tileSizeInPixels * 2);
 
     add(TimerComponent(
-        period: 2,
+        period: 3,
         repeat: true,
         onTick: () {
           _canDamage = true;
@@ -53,16 +53,9 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {
-      if (position.x - 50 < other.position.x) {
-        if (_canDamage) {
-          _canDamage = false;
-          if (other.health != 1) {
-            other.health = 1;
-            other.skin(other.sprite);
-          } else {
-            print('morreu');
-          }
-        }
+      if ((position.x - 50 < other.position.x) & (_canDamage)) {
+        other.takeDamage();
+        _canDamage = false; 
       }
     }
 

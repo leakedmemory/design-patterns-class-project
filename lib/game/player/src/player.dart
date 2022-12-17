@@ -15,13 +15,18 @@ class Player extends SpriteAnimationComponent
   // ignore: unused_field
   late final MovementObserver _movementObserver;
 
-  late final MyGame _game;
+  late final MyGame game;
 
-  final _moveSpeed = 135.0;
+  bool inCombat = false;
+  
+  bool canWalk = true;
+  final _moveSpeed = 140.0;
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
   late SpriteSheet sprite;
+
+  late SpriteAnimation idleDied;
   late SpriteAnimation idleUp;
   late SpriteAnimation idleDown;
   late SpriteAnimation idleRight;
@@ -42,8 +47,8 @@ class Player extends SpriteAnimationComponent
 
   int health = 2;
 
-  Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
-    _game = game;
+  Player(MyGame _game) : super(size: Vector2.all(_game.tileSizeInPixels)) {
+    game = _game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
 
@@ -77,29 +82,41 @@ class Player extends SpriteAnimationComponent
     attackDownAnimation =
         sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
     attackRightAnimation =
-        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 12, stepTime: 0.1);
     attackLeftAnimation =
-        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 10, stepTime: 0.1);
 
     if (health == 2) {
-      animation = idleDown;
+      animation = idleUp;
+      size = Vector2.all(game.tileSizeInPixels * 2);
     }
+  }
 
-    size = Vector2.all(_game.tileSizeInPixels * 2);
+  Future<void> takeDamage() async {
+    health -= 1;
+    if (health == 0) {
+      idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 5, to: 6);
+      animation = idleDied;
+      canWalk = false;
+      // acaba o jogo
+    } else {
+      // muda a sprite
+      skin(sprite);
+    }
   }
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
     hitbox = RectangleHitbox(
-        size: Vector2.all(_game.tileSizeInPixels), position: center);
+        size: Vector2.all(game.tileSizeInPixels), position: center);
     sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
-        srcSize: Vector2.all(_game.tileSizeInPixels));
+        srcSize: Vector2.all(game.tileSizeInPixels));
     add(hitbox);
     skin(sprite);
 
-    position = Vector2(125, 475);
+    position = Vector2(367, 557);
     priority = 1;
   }
 
@@ -111,8 +128,8 @@ class Player extends SpriteAnimationComponent
     } else {
       _velocity = _movement * _moveSpeed;
     }
-
     position += _velocity * dt;
+
     super.update(dt);
   }
 
@@ -120,7 +137,9 @@ class Player extends SpriteAnimationComponent
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _movement = Vector2.zero();
     _keyboardListener.keysPressed = keysPressed;
-    _keyboardListener.notifyObservers();
+    if (canWalk) {
+      _keyboardListener.notifyObservers();
+    }
 
     return true;
   }
@@ -131,38 +150,32 @@ class Player extends SpriteAnimationComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Wall) {
-      if (position.y < _game.tileSizeInPixels) {
-        position.y = _game.tileSizeInPixels;
+      if (position.y < game.tileSizeInPixels) {
+        position.y = game.tileSizeInPixels;
       }
 
-      if (position.y > _game.mapHeightInPixels - _game.tileSizeInPixels) {
-        position.y = _game.mapHeightInPixels - _game.tileSizeInPixels;
+      if (position.y > game.mapHeightInPixels - game.tileSizeInPixels) {
+        position.y = game.mapHeightInPixels - game.tileSizeInPixels;
       }
 
-      if (position.x < -_game.tileSizeInPixels / 2) {
-        position.x = -_game.tileSizeInPixels / 2;
+      if (position.x < -game.tileSizeInPixels / 2) {
+        position.x = -game.tileSizeInPixels / 2;
       }
 
-      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5) {
-        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5;
+      if (position.x > game.mapWidthInPixels - game.tileSizeInPixels * 1.5) {
+        position.x = game.mapWidthInPixels - game.tileSizeInPixels * 1.5;
       }
     }
-
     //? TODO: falta fazer colisão com as mesas, isso aí funciona, mas fica como
     //? se quisesse entrar nas bordas da sprite
-    if (other is Table) {
-      // if (intersectionPoints.length == 2) {
-      //   final mid = (intersectionPoints.elementAt(0) +
-      //           intersectionPoints.elementAt(1)) /
-      //       2;
+    /* if ((other is Table) & (intersectionPoints.length == 2)) {
+      final mid = game.tileSizeInPixels / 2;
 
-      //   final collisionNormal = absoluteCenter - mid;
-      //   final separationDistance = (size.x / 4) - collisionNormal.length;
-      //   collisionNormal.normalize();
-
-      //   position += collisionNormal.scaled(separationDistance);
-      // }
-    }
+      final interval = {
+        Vector2(position.x - mid, position.y - mid),
+        Vector2(position.x + mid, position.y - mid)
+      };
+    } */
 
     super.onCollision(intersectionPoints, other);
   }
