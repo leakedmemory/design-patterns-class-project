@@ -7,15 +7,17 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'player/player.dart';
 import 'bosses/bosses.dart';
 import 'map_maker/map_maker.dart';
+import 'text_box.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
+  late TextBox textBox;
+
+  // mapa
   late Maker componentsMaker = MapMaker(this);
   late var components = componentsMaker.make();
-
   final _scenerySpritesPath = 'scenery.png';
   final _objectsSpritesPath = 'objects.png';
-
   final _tileSizeInPixels = 32.0;
   late final TiledComponent _map;
   late final _mapWidthInTiles = _map.width / _tileSizeInPixels;
@@ -46,8 +48,13 @@ class MyGame extends FlameGame
 
     camera.viewport = FixedResolutionViewport(
         Vector2(_map.width, _map.height + _tileSizeInPixels));
+        
+    textBox = TextBox(
+        text: 'Mais um dia tendo que arrumar um pentium...', game: this);
+    add(textBox);
   }
 
+  
   Sprite gameSprites(String spritePath, Vector2 position) {
     return Sprite(Flame.images.fromCache(spritePath),
         srcPosition: position, srcSize: Vector2.all(_tileSizeInPixels));
@@ -59,7 +66,7 @@ class MyGame extends FlameGame
         add(c);
       } else {
         if ((c.toString() != "Instance of 'Wall'") &
-            (c.toString() != "Instance of 'Plant'"))  {
+            (c.toString() != "Instance of 'Plant'")) {
           remove(c);
         }
       }
