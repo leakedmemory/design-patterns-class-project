@@ -19,7 +19,7 @@ class Player extends SpriteAnimationComponent
 
   bool inCombat = false;
   
-  bool canWalk = true;
+  bool canWalk = false;
   final _moveSpeed = 140.0;
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();

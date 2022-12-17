@@ -12,8 +12,7 @@ class TextBox extends TextBoxComponent {
             boxConfig: TextBoxConfig(
                 dismissDelay: 1.0,
                 maxWidth: game.size.x * 0.5,
-                timePerChar: 0.1
-                )) {
+                timePerChar: 0.1)) {
     anchor = Anchor.bottomCenter;
   }
 
@@ -27,6 +26,7 @@ class TextBox extends TextBoxComponent {
   void update(double dt) {
     super.update(dt);
     if (finished) {
+      game.player.canWalk = true;
       game.remove(this);
     }
   }

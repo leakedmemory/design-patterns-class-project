@@ -29,7 +29,7 @@ class MyGame extends FlameGame
   double get mapWidthInTiles => _mapWidthInTiles;
   double get mapHeightInTiles => _mapHeightInTiles;
 
-  late final _player = Player(this);
+  late final player = Player(this);
   late final _cpu = CPU(this);
 
   String get scenerySpritePath => _scenerySpritesPath;
@@ -44,7 +44,7 @@ class MyGame extends FlameGame
     _map = await TiledComponent.load('map.tmx', Vector2.all(_tileSizeInPixels));
     await add(_map);
     mapComponents(1);
-    await add(_player);
+    await add(player);
 
     camera.viewport = FixedResolutionViewport(
         Vector2(_map.width, _map.height + _tileSizeInPixels));
