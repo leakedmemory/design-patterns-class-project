@@ -121,14 +121,6 @@ class Player extends SpriteAnimationComponent
 
     position = Vector2(367, 557);
     priority = 1;
-
-    // tempo de invencibilidade depois de tomar dano
-    add(TimerComponent(
-        period: 3,
-        repeat: true,
-        onTick: () {
-          _vulnerable = true;
-        }));
   }
 
   @override
@@ -162,6 +154,13 @@ class Player extends SpriteAnimationComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is CPU) {
       if (_vulnerable) {
+        // tempo de invencibilidade depois de tomar dano
+        add(TimerComponent(
+            period: 2,
+            repeat: true,
+            onTick: () {
+              _vulnerable = true;
+            }));
         takeDamage();
         _vulnerable = false;
       }
