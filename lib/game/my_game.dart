@@ -1,5 +1,7 @@
+import 'dart:async' show Timer;
+
 import 'package:flame/flame.dart';
-import 'package:flame/components.dart';
+import 'package:flame/components.dart' hide Timer;
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
@@ -53,6 +55,7 @@ class MyGame extends FlameGame
         game: this,
         player: _player);
     add(_textBox);
+    startGame();
   }
 
   Sprite gameSprites(String spritePath, Vector2 position) {
@@ -75,6 +78,34 @@ class MyGame extends FlameGame
         (component is! Plant) &
         (component is! Shelf) &
         (component is! Board));
+  }
+
+  void startGame() {
+    _player.moveSpeed = 85;
+    _player.movement.y -= 1;
+    _player.animation = _player.upAnimation;
+    _player.canWalk = false;
+    Timer(
+        const Duration(milliseconds: 3000),
+        () => {
+              _player.movement.y = 0,
+              _player.animation = _player.leftAnimation,
+              _player.movement.x -= 1
+            });
+    Timer(
+        const Duration(milliseconds: 4120),
+        () => {
+              _player.movement.x = 0,
+              _player.animation = _player.upAnimation,
+              _player.movement.y -= 1
+            });
+    Timer(
+        const Duration(milliseconds: 4600),
+        () => {
+              _player.movement.y = 0,
+              _player.animation = _player.idleUp,
+              _player.moveSpeed = 135.0
+            });
   }
 
   void startCombat() {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'keyboard_listener.dart';
 import 'player.dart';
 
@@ -5,7 +7,11 @@ class MovementObserver {
   late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
 
+  late var oldIdle;
+  late var nowIdle;
+
   void _attack() {
+    oldIdle = _player.animation;
     if ((_player.animation == _player.upAnimation) |
         (_player.animation == _player.idleUp)) {
       _player.animation = _player.attackUpAnimation;
@@ -19,6 +25,9 @@ class MovementObserver {
         (_player.animation == _player.idleLeft)) {
       _player.animation = _player.attackLeftAnimation;
     }
+    nowIdle = _player.animation;
+    Timer(const Duration(milliseconds: 800),
+        () => _player.animation == nowIdle ? _player.animation = oldIdle : {});
   }
 
   late final Map<String, Function> _validMovements = {
@@ -39,7 +48,9 @@ class MovementObserver {
       _player.animation = _player.downAnimation;
     },
     ' ': () {
-      _attack();
+      if (_player.inCombat) {
+        _attack();
+      }
     },
     'F': () {
       if (!_player.inCombat) {

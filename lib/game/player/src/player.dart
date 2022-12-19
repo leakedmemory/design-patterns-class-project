@@ -1,5 +1,6 @@
+import 'dart:async' show Timer;
 import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
+import 'package:flame/components.dart' hide Timer;
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +25,7 @@ class Player extends SpriteAnimationComponent
   bool inCombat = false;
 
   bool canWalk = false;
-  final _moveSpeed = 140.0;
+  late var moveSpeed = 135.0;
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
@@ -102,6 +103,7 @@ class Player extends SpriteAnimationComponent
       idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 5, to: 6);
       animation = idleDied;
       canWalk = false;
+      moveSpeed = 0;
     } else {
       skin(sprite);
     }
@@ -127,9 +129,9 @@ class Player extends SpriteAnimationComponent
   void update(double dt) {
     // não andar mais rápido na diagonal do que em apenas um eixo
     if (_movement.x != 0 && _movement.y != 0) {
-      _velocity = _movement * _moveSpeed / 1.5;
+      _velocity = _movement * moveSpeed / 1.5;
     } else {
-      _velocity = _movement * _moveSpeed;
+      _velocity = _movement * moveSpeed;
     }
     position += _velocity * dt;
 
@@ -138,9 +140,9 @@ class Player extends SpriteAnimationComponent
 
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    _movement = Vector2.zero();
-    _keyboardListener.keysPressed = keysPressed;
     if (canWalk) {
+      _movement = Vector2.zero();
+      _keyboardListener.keysPressed = keysPressed;
       _keyboardListener.notifyObservers();
     }
 
@@ -155,12 +157,7 @@ class Player extends SpriteAnimationComponent
     if (other is CPU) {
       if (_vulnerable) {
         // tempo de invencibilidade depois de tomar dano
-        add(TimerComponent(
-            period: 2,
-            repeat: true,
-            onTick: () {
-              _vulnerable = true;
-            }));
+        Timer(const Duration(seconds: 2), () => _vulnerable = true);
         takeDamage();
         _vulnerable = false;
       }
