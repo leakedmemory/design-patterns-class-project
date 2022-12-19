@@ -26,6 +26,7 @@ class PlantsMaker implements ComponentMaker<Plant, PlantType> {
       ..._plantOnRightSideOfMainTable(),
       ..._plantOnVerticalTable(),
       ..._cactusOnRightSideOfMainTable(),
+      ..._cactusOnTopLeft(),
       ..._plantAtBottomLeftCorner(),
       ..._plantAtBottomRightCorner(),
     ];
@@ -64,6 +65,15 @@ class PlantsMaker implements ComponentMaker<Plant, PlantType> {
     plant.add(setSpriteTileOnMap(PlantType.cactusTop, 20, 0));
     plant.add(setSpriteTileOnMap(PlantType.cactusMiddle, 20, 1));
     plant.add(setSpriteTileOnMap(PlantType.cactusBottom, 20, 2));
+
+    return plant;
+  }
+
+  List<Plant> _cactusOnTopLeft() {
+    List<Plant> plant = [];
+    plant.add(setSpriteTileOnMap(PlantType.cactusTop, 1, 0));
+    plant.add(setSpriteTileOnMap(PlantType.cactusMiddle, 1, 1));
+    plant.add(setSpriteTileOnMap(PlantType.cactusBottom, 1, 2));
 
     return plant;
   }

@@ -61,15 +61,19 @@ class MyGame extends FlameGame
   }
 
   void mapComponents(int op) {
-    for (Component c in _components) {
+    for (Component component in _components) {
       if (op == 1) {
-        add(c);
-      } else if ((c is! Wall) & (c is! Plant)) {
-        {
-          remove(c);
-        }
+        add(component);
+      } else if (_isRemovable(component)) {
+        remove(component);
       }
     }
+  }
+
+  bool _isRemovable(Component component) {
+    return ((component is! Wall) &
+        (component is! Plant) &
+        (component is! Shelf));
   }
 
   void startCombat() {
