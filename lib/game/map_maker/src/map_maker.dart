@@ -22,6 +22,8 @@ class MapMaker implements Maker<Component> {
   late final Maker _boardsMaker;
 
   MapMaker(MyGame game) {
+    game.logger.log('Generating map');
+
     _wallsMaker = WallsMaker(game);
     _tablesMaker = TablesMaker(game);
     _computersMaker = ComputersMaker(game);

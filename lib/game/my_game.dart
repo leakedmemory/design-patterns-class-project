@@ -6,6 +6,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
+import 'logger/logger.dart';
 import 'player/player.dart';
 import 'bosses/bosses.dart';
 import 'map_maker/map_maker.dart';
@@ -13,6 +14,10 @@ import 'text_box.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
+  final Logger _logger = Logger();
+
+  Logger get logger => _logger;
+
   late TextBox _textBox;
 
   // mapa
