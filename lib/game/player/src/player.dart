@@ -1,4 +1,5 @@
 import 'dart:async' show Timer;
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart' hide Timer;
 import 'package:flame/flame.dart';
@@ -25,7 +26,7 @@ class Player extends SpriteAnimationComponent
   bool inCombat = false;
 
   bool canWalk = false;
-  late var moveSpeed = 135.0;
+  late double moveSpeed = 135.0;
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
@@ -181,16 +182,8 @@ class Player extends SpriteAnimationComponent
       }
     }
 
-    //? TODO: falta fazer colisão com as mesas, isso aí funciona, mas fica como
-    //? se quisesse entrar nas bordas da sprite
-    /* if ((other is Table) & (intersectionPoints.length == 2)) {
-      final mid = game.tileSizeInPixels / 2;
-
-      final interval = {
-        Vector2(position.x - mid, position.y - mid),
-        Vector2(position.x + mid, position.y - mid)
-      };
-    } */
+    // TODO: colisão com as mesas
+    // if ((other is Table) & (intersectionPoints.length == 2)) {}
 
     super.onCollision(intersectionPoints, other);
   }
