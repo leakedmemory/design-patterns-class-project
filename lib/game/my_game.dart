@@ -11,11 +11,10 @@ import 'text_box.dart';
 
 class MyGame extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
-  late TextBox textBox;
+  late TextBox _textBox;
 
   // mapa
-  late Maker componentsMaker = MapMaker(this);
-  late var components = componentsMaker.make();
+  late final _components = MapMaker(this).make();
   final _scenerySpritesPath = 'scenery.png';
   final _objectsSpritesPath = 'objects.png';
   final _tileSizeInPixels = 32.0;
@@ -23,17 +22,16 @@ class MyGame extends FlameGame
   late final _mapWidthInTiles = _map.width / _tileSizeInPixels;
   late final _mapHeightInTiles = _map.height / _tileSizeInPixels;
 
+  String get scenerySpritePath => _scenerySpritesPath;
+  String get objectsSpritePath => _objectsSpritesPath;
   double get tileSizeInPixels => _tileSizeInPixels;
   double get mapWidthInPixels => _map.width;
   double get mapHeightInPixels => _map.height;
   double get mapWidthInTiles => _mapWidthInTiles;
   double get mapHeightInTiles => _mapHeightInTiles;
 
-  late final player = Player(this);
-  late final _cpu = Cpu(this);
-
-  String get scenerySpritePath => _scenerySpritesPath;
-  String get objectsSpritePath => _objectsSpritesPath;
+  late final _player = Player(this);
+  late final _cpu = CPU(this);
 
   @override
   Future<void> onLoad() async {
@@ -44,29 +42,30 @@ class MyGame extends FlameGame
     _map = await TiledComponent.load('map.tmx', Vector2.all(_tileSizeInPixels));
     await add(_map);
     mapComponents(1);
-    await add(player);
+
+    await add(_player);
 
     camera.viewport = FixedResolutionViewport(
         Vector2(_map.width, _map.height + _tileSizeInPixels));
-        
-    textBox = TextBox(
-        text: 'Mais um dia tendo que arrumar um pentium...', game: this);
-    add(textBox);
+
+    _textBox = TextBox(
+        text: 'Não aguento mais ter que consertar computador da Negativo...',
+        game: this,
+        player: _player);
+    add(_textBox);
   }
 
-  
   Sprite gameSprites(String spritePath, Vector2 position) {
     return Sprite(Flame.images.fromCache(spritePath),
         srcPosition: position, srcSize: Vector2.all(_tileSizeInPixels));
   }
 
   void mapComponents(int op) {
-    for (Component c in components) {
+    for (Component c in _components) {
       if (op == 1) {
         add(c);
-      } else {
-        if ((c.toString() != "Instance of 'Wall'") &
-            (c.toString() != "Instance of 'Plant'")) {
+      } else if ((c is! Wall) & (c is! Plant)) {
+        {
           remove(c);
         }
       }

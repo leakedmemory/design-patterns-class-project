@@ -16,7 +16,9 @@ class Player extends SpriteAnimationComponent
   // ignore: unused_field
   late final MovementObserver _movementObserver;
 
-  late final MyGame game;
+  late final MyGame _game;
+
+  MyGame get game => _game;
 
   bool _vulnerable = true;
   bool inCombat = false;
@@ -29,6 +31,7 @@ class Player extends SpriteAnimationComponent
   late SpriteSheet sprite;
 
   late SpriteAnimation idleDied;
+
   late SpriteAnimation idleUp;
   late SpriteAnimation idleDown;
   late SpriteAnimation idleRight;
@@ -49,8 +52,8 @@ class Player extends SpriteAnimationComponent
 
   int health = 2;
 
-  Player(MyGame _game) : super(size: Vector2.all(_game.tileSizeInPixels)) {
-    game = _game;
+  Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
+    _game = game;
     _keyboardListener = CustomKeyboardListener();
     _movementObserver = MovementObserver(_keyboardListener, this);
 
@@ -64,7 +67,6 @@ class Player extends SpriteAnimationComponent
         sprite.createAnimation(row: rowAnimation + 6, stepTime: 0.5, to: 1);
     idleDown =
         sprite.createAnimation(row: rowAnimation + 0, stepTime: 0.5, to: 1);
-    // mudar quando lucas mandar a nova idle
     idleRight = sprite.createAnimation(
         row: rowAnimation + 8, stepTime: 0.5, from: 5, to: 6);
     idleLeft = sprite.createAnimation(
@@ -90,7 +92,7 @@ class Player extends SpriteAnimationComponent
 
     if (health == 2) {
       animation = idleUp;
-      size = Vector2.all(game.tileSizeInPixels * 2);
+      size = Vector2.all(_game.tileSizeInPixels * 2);
     }
   }
 
@@ -100,9 +102,7 @@ class Player extends SpriteAnimationComponent
       idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 5, to: 6);
       animation = idleDied;
       canWalk = false;
-      // acaba o jogo
     } else {
-      // muda a sprite
       skin(sprite);
     }
   }
@@ -110,17 +110,19 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    // manter a ordem de adicionar o hitbox antes da skin, senão buga
     hitbox = RectangleHitbox(
-        size: Vector2.all(game.tileSizeInPixels), position: center);
+        size: Vector2.all(_game.tileSizeInPixels), position: center);
     sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
-        srcSize: Vector2.all(game.tileSizeInPixels));
+        srcSize: Vector2.all(_game.tileSizeInPixels));
     add(hitbox);
     skin(sprite);
 
     position = Vector2(367, 557);
     priority = 1;
 
+    // tempo de invencibilidade depois de tomar dano
     add(TimerComponent(
         period: 3,
         repeat: true,
@@ -158,29 +160,31 @@ class Player extends SpriteAnimationComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Cpu) {
+    if (other is CPU) {
       if (_vulnerable) {
         takeDamage();
-        _vulnerable = false; 
+        _vulnerable = false;
       }
     }
+
     if (other is Wall) {
-      if (position.y < game.tileSizeInPixels) {
-        position.y = game.tileSizeInPixels;
+      if (position.y < _game.tileSizeInPixels) {
+        position.y = _game.tileSizeInPixels;
       }
 
-      if (position.y > game.mapHeightInPixels - game.tileSizeInPixels) {
-        position.y = game.mapHeightInPixels - game.tileSizeInPixels;
+      if (position.y > _game.mapHeightInPixels - _game.tileSizeInPixels) {
+        position.y = _game.mapHeightInPixels - _game.tileSizeInPixels;
       }
 
-      if (position.x < -game.tileSizeInPixels / 2) {
-        position.x = -game.tileSizeInPixels / 2;
+      if (position.x < -_game.tileSizeInPixels / 2) {
+        position.x = -_game.tileSizeInPixels / 2;
       }
 
-      if (position.x > game.mapWidthInPixels - game.tileSizeInPixels * 1.5) {
-        position.x = game.mapWidthInPixels - game.tileSizeInPixels * 1.5;
+      if (position.x > _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5) {
+        position.x = _game.mapWidthInPixels - _game.tileSizeInPixels * 1.5;
       }
     }
+
     //? TODO: falta fazer colisão com as mesas, isso aí funciona, mas fica como
     //? se quisesse entrar nas bordas da sprite
     /* if ((other is Table) & (intersectionPoints.length == 2)) {
