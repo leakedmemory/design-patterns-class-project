@@ -69,9 +69,9 @@ class MyGame extends FlameGame
         player: _player,
         positionX: 305,
         positionY: 200,
-        scaleX: 0.5,
-        scaleY: 0.5,
-        size: 0.2);
+        scale: 0.5,
+        size: 0.2,
+        time: 1);
 
     add(_textBox);
     

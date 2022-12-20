@@ -1,4 +1,5 @@
-import 'package:flame/components.dart';
+import 'dart:async' show Timer;
+import 'package:flame/components.dart' hide Timer;
 import 'package:flutter/cupertino.dart';
 
 import 'my_game.dart';
@@ -7,15 +8,17 @@ import 'player/player.dart';
 class TextBox extends TextBoxComponent {
   late final MyGame _game;
   late final Player _player;
+  late int _time;
 
-  TextBox({required String text, 
-  required MyGame game, 
-  required Player player, 
-  double positionX = 50, 
-  double positionY = 115, 
-  double size = 0.5,
-  double scaleX = 1,
-  double scaleY = 1})
+  TextBox(
+      {required String text,
+      required MyGame game,
+      required Player player,
+      double positionX = 50,
+      double positionY = 115,
+      double size = 0.5,
+      double scale = 1,
+      int time = 0})
       : super(
             text: text,
             position: Vector2(positionX, positionY),
@@ -23,10 +26,11 @@ class TextBox extends TextBoxComponent {
                 dismissDelay: 1.0,
                 maxWidth: game.size.x * size,
                 timePerChar: 0.1),
-                scale: Vector2(scaleX,scaleY)) {
+            scale: Vector2.all(scale)) {
     anchor = Anchor.bottomCenter;
     _game = game;
     _player = player;
+    _time = time;
     priority = 10;
   }
 
@@ -40,8 +44,10 @@ class TextBox extends TextBoxComponent {
   void update(double dt) {
     super.update(dt);
     if (finished) {
+      _time == 1
+          ? Timer(const Duration(seconds: 3), () => _game.remove(this))
+          : {_game.remove(this)};
       _player.canWalk = true;
-      _game.remove(this);
     }
   }
 }
