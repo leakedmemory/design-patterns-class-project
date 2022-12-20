@@ -5,7 +5,6 @@ import 'package:flame/sprite.dart';
 
 import '../../../player/player.dart';
 import '../../../my_game.dart';
-import '../../../player/src/player.dart';
 
 class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
