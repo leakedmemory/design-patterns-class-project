@@ -19,6 +19,7 @@ class MyGame extends FlameGame
   Logger get logger => _logger;
 
   late TextBox _textBox;
+  late TextBox _textBox2;
 
   // mapa
   late final _components = MapMaker(this).make();
@@ -58,8 +59,23 @@ class MyGame extends FlameGame
     _textBox = TextBox(
         text: 'Não aguento mais ter que consertar computador da Negativo...',
         game: this,
-        player: _player);
+        player: _player,
+        positionX: mapWidthInPixels / 2,
+        size: 0.6);
+
+    _textBox2 = TextBox(
+        text: 'Click F para iniciar o reparo do computador',
+        game: this,
+        player: _player,
+        positionX: 305,
+        positionY: 200,
+        scaleX: 0.5,
+        scaleY: 0.5,
+        size: 0.2);
+
     add(_textBox);
+    
+    Timer(const Duration(milliseconds: 8500), () => add(_textBox2));
     startGame();
   }
 
@@ -86,26 +102,31 @@ class MyGame extends FlameGame
   }
 
   void startGame() {
-    _player.moveSpeed = 85;
-    _player.movement.y -= 1;
-    _player.animation = _player.upAnimation;
-    _player.canWalk = false;
+     Timer(
+        const Duration(milliseconds: 1500),
+        () => {
+              _player.moveSpeed = 85,
+              _player.movement.y -= 1,
+              _player.animation = _player.upAnimation,
+              _player.canWalk = false
+            });
+    
     Timer(
-        const Duration(milliseconds: 3000),
+        const Duration(milliseconds: 4500),
         () => {
               _player.movement.y = 0,
               _player.animation = _player.leftAnimation,
               _player.movement.x -= 1
             });
     Timer(
-        const Duration(milliseconds: 4120),
+        const Duration(milliseconds: 5620),
         () => {
               _player.movement.x = 0,
               _player.animation = _player.upAnimation,
               _player.movement.y -= 1
             });
     Timer(
-        const Duration(milliseconds: 4600),
+        const Duration(milliseconds: 6100),
         () => {
               _player.movement.y = 0,
               _player.animation = _player.idleUp,

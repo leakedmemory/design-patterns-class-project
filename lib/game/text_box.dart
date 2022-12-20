@@ -8,14 +8,22 @@ class TextBox extends TextBoxComponent {
   late final MyGame _game;
   late final Player _player;
 
-  TextBox({required String text, required MyGame game, required Player player})
+  TextBox({required String text, 
+  required MyGame game, 
+  required Player player, 
+  double positionX = 50, 
+  double positionY = 115, 
+  double size = 0.5,
+  double scaleX = 1,
+  double scaleY = 1})
       : super(
             text: text,
-            position: Vector2(game.mapWidthInPixels / 2, 125),
+            position: Vector2(positionX, positionY),
             boxConfig: TextBoxConfig(
                 dismissDelay: 1.0,
-                maxWidth: game.size.x * 0.5,
-                timePerChar: 0.1)) {
+                maxWidth: game.size.x * size,
+                timePerChar: 0.1),
+                scale: Vector2(scaleX,scaleY)) {
     anchor = Anchor.bottomCenter;
     _game = game;
     _player = player;
