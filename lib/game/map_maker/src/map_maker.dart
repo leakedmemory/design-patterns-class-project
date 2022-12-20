@@ -12,6 +12,8 @@ import 'tables_maker.dart';
 import 'walls_maker.dart';
 
 class MapMaker implements Maker<Component> {
+  late final MyGame _game;
+
   late final Maker _tablesMaker;
   late final Maker _wallsMaker;
   late final Maker _computersMaker;
@@ -22,7 +24,7 @@ class MapMaker implements Maker<Component> {
   late final Maker _boardsMaker;
 
   MapMaker(MyGame game) {
-    game.logger.log('Generating map');
+    _game = game;
 
     _wallsMaker = WallsMaker(game);
     _tablesMaker = TablesMaker(game);
@@ -36,6 +38,7 @@ class MapMaker implements Maker<Component> {
 
   @override
   List<Component> make() {
+    _game.logger.log('Gerando mapa');
     List<Component> components = [
       ..._wallsMaker.make(),
       ..._tablesMaker.make(),

@@ -21,6 +21,7 @@ class ComputersMaker implements ComponentMaker<Computer, ComputerType> {
 
   @override
   List<Computer> make() {
+    _game.logger.log('Gerando monitores');
     List<Computer> computers = [
       ..._squaredTable1Monitors(),
       ..._mainTableComputer(),

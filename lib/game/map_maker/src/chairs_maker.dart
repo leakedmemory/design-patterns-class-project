@@ -21,6 +21,7 @@ class ChairsMaker implements ComponentMaker<Chair, ChairType> {
 
   @override
   List<Chair> make() {
+    _game.logger.log('Gerando cadeiras');
     List<Chair> chairs = [
       ..._createMainTableChair(),
     ];

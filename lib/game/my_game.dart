@@ -44,13 +44,19 @@ class MyGame extends FlameGame
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    logger.log('Carregando cenário');
     await Flame.images.load(_scenerySpritesPath);
+
+    logger.log('Carregando objetos');
     await Flame.images.load(_objectsSpritesPath);
 
+    logger.log('Iniciando mapa');
     _map = await TiledComponent.load('map.tmx', Vector2.all(_tileSizeInPixels));
     await add(_map);
     mapComponents(1);
 
+    logger.log('Adicionando player');
     await add(_player);
 
     camera.viewport = FixedResolutionViewport(
@@ -139,6 +145,8 @@ class MyGame extends FlameGame
   }
 
   void startCombat() {
+    logger.log('Iniciando combate');
+    logger.log('Adicionando inimigo');
     add(_cpu);
     mapComponents(2);
   }

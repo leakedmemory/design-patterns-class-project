@@ -21,6 +21,7 @@ class ShelvesMaker implements ComponentMaker<Shelf, ShelfType> {
 
   @override
   List<Shelf> make() {
+    _game.logger.log('Gerando estantes');
     List<Shelf> shelves = [
       ..._createFullShelf(),
       ..._createEmptyShelf(),

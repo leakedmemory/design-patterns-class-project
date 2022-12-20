@@ -21,6 +21,7 @@ class WallsMaker implements ComponentMaker<Wall, WallType> {
 
   @override
   List<Wall> make() {
+    _game.logger.log('Gerando paredes');
     List<Wall> walls = [
       ..._createTopWalls(),
       ..._createBottomWalls(),

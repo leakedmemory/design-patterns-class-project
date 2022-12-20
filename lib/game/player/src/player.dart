@@ -30,6 +30,9 @@ class Player extends SpriteAnimationComponent
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
+  set movement(Vector2 m) => movement = m;
+  Vector2 get movement => _movement;
+
   late SpriteSheet sprite;
 
   late SpriteAnimation idleDied;
@@ -98,8 +101,9 @@ class Player extends SpriteAnimationComponent
     }
   }
 
-  Future<void> takeDamage() async {
+  void takeDamage() {
     health -= 1;
+    _game.logger.log('Player sofreu dano. Vida atual: $health');
     if (health == 0) {
       idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 5, to: 6);
       animation = idleDied;
@@ -113,6 +117,7 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    _game.logger.log('Carregando hitbox e sprite do player');
     // manter a ordem de adicionar o hitbox antes da skin, senão buga
     hitbox = RectangleHitbox(
         size: Vector2.all(_game.tileSizeInPixels), position: center);
@@ -149,9 +154,6 @@ class Player extends SpriteAnimationComponent
 
     return true;
   }
-
-  set movement(Vector2 m) => movement = m;
-  Vector2 get movement => _movement;
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {

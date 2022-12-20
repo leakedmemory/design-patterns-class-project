@@ -21,6 +21,7 @@ class PlantsMaker implements ComponentMaker<Plant, PlantType> {
 
   @override
   List<Plant> make() {
+    _game.logger.log('Gerando plantas');
     List<Plant> plants = [
       ..._plantOnTopOfMainTable(),
       ..._plantOnRightSideOfMainTable(),

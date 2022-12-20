@@ -21,6 +21,7 @@ class BoardsMaker implements ComponentMaker<Board, BoardType> {
 
   @override
   List<Board> make() {
+    _game.logger.log('Gerando quadros');
     List<Board> boards = [
       ..._createPieBoard(),
     ];

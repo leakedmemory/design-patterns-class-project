@@ -4,5 +4,7 @@ import 'package:flame/game.dart';
 import 'game/my_game.dart';
 
 void main() {
-  runApp(GameWidget(game: MyGame()));
+  final game = MyGame();
+  game.logger.log('Iniciando jogo');
+  runApp(GameWidget(game: game));
 }

@@ -21,6 +21,7 @@ class PrintersMaker implements ComponentMaker<Printer, PrinterType> {
 
   @override
   List<Printer> make() {
+    _game.logger.log('Gerando impressoras');
     List<Printer> printers = [
       ..._coloredPrinter(),
       ..._verticalPrinter(),

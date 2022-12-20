@@ -20,6 +20,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    _game.logger.log('Carregando hitbox e sprite da CPU');
     SpriteSheet sprite = SpriteSheet(
         image: await Flame.images.load('player.png'),
         srcSize: Vector2.all(_game.tileSizeInPixels));

@@ -21,6 +21,7 @@ class TablesMaker implements ComponentMaker<Table, TableType> {
 
   @override
   List<Table> make() {
+    _game.logger.log('Gerando mesas');
     List<Table> tables = [
       ..._tableWithTurn(),
       ..._trophiesTable(),
