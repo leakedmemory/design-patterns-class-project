@@ -64,7 +64,7 @@ class MyGame extends FlameGame
         size: 0.6);
 
     _textBox2 = TextBox(
-        text: 'Click F para iniciar o reparo do computador',
+        text: 'Aperte F para iniciar o reparo do computador.',
         game: this,
         player: _player,
         positionX: 305,
@@ -74,8 +74,10 @@ class MyGame extends FlameGame
         time: 1);
 
     add(_textBox);
-    
+
     Timer(const Duration(milliseconds: 8500), () => add(_textBox2));
+    Timer(const Duration(milliseconds: 14000), () => remove(_textBox2));
+
     startGame();
   }
 
@@ -102,7 +104,7 @@ class MyGame extends FlameGame
   }
 
   void startGame() {
-     Timer(
+    Timer(
         const Duration(milliseconds: 1500),
         () => {
               _player.moveSpeed = 85,
@@ -110,7 +112,7 @@ class MyGame extends FlameGame
               _player.animation = _player.upAnimation,
               _player.canWalk = false
             });
-    
+
     Timer(
         const Duration(milliseconds: 4500),
         () => {
@@ -118,6 +120,7 @@ class MyGame extends FlameGame
               _player.animation = _player.leftAnimation,
               _player.movement.x -= 1
             });
+
     Timer(
         const Duration(milliseconds: 5620),
         () => {
@@ -125,6 +128,7 @@ class MyGame extends FlameGame
               _player.animation = _player.upAnimation,
               _player.movement.y -= 1
             });
+
     Timer(
         const Duration(milliseconds: 6100),
         () => {

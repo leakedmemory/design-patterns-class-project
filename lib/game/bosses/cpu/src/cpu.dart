@@ -29,7 +29,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     add(hitbox);
 
     animation = sprite.createAnimation(row: 1, stepTime: 0.2, to: 1);
-    position = Vector2(300, 300);
+    position = Vector2(400, 300);
     size = Vector2.all(_game.tileSizeInPixels * 2);
   }
 

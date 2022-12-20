@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flame/widgets.dart';
+
 import 'keyboard_listener.dart';
 import 'player.dart';
 
@@ -7,8 +9,8 @@ class MovementObserver {
   late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
 
-  late var oldIdle;
-  late var nowIdle;
+  late SpriteAnimation? oldIdle;
+  late SpriteAnimation? nowIdle;
 
   void _attack() {
     oldIdle = _player.animation;
