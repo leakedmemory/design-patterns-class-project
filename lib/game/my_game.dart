@@ -39,7 +39,7 @@ class MyGame extends FlameGame
   double get mapHeightInTiles => _mapHeightInTiles;
 
   late final _player = Player(this);
-  late final _cpu = CPU(this);
+  late final _hd = HD(this);
 
   @override
   Future<void> onLoad() async {
@@ -147,7 +147,7 @@ class MyGame extends FlameGame
   void startCombat() {
     logger.log('Iniciando combate');
     logger.log('Adicionando inimigo');
-    add(_cpu);
+    add(_hd);
     mapComponents(2);
   }
 }
