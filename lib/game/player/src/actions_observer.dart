@@ -1,55 +1,51 @@
 import '../../my_game.dart';
+import 'commands/commands.dart';
 import 'keyboard_listener.dart';
 import 'player.dart';
 
 class ActionsObserver {
   late final MyKeyboardListener _keyboardListener;
-  late final MyGame _game;
   late final Player _player;
+
+  late final Command _keyA;
+  late final Command _keyD;
+  late final Command _keyW;
+  late final Command _keyS;
+  late final Command _keySpace;
+  late final Command _keyF;
 
   late final Map<String, Function> _validMovements = {
     'A': () {
-      _player.movement.x -= 1;
-      _player.animation = _player.leftAnimation;
+      _keyA.execute();
     },
     'D': () {
-      _player.movement.x += 1;
-      _player.animation = _player.rightAnimation;
+      _keyD.execute();
     },
     'W': () {
-      _player.movement.y -= 1;
-      _player.animation = _player.upAnimation;
+      _keyW.execute();
     },
     'S': () {
-      _player.movement.y += 1;
-      _player.animation = _player.downAnimation;
+      _keyS.execute();
     },
     ' ': () {
-      if (_player.inCombat) {
-        _player.attackStrategy.attack();
-      }
+      _keySpace.execute();
     },
     'F': () {
-      if (_playerIsInFrontOfNotebook()) {
-        _game.startCombatWithHD();
-        _player.inCombat = true;
-      }
+      _keyF.execute();
     },
   };
 
-  bool _playerIsInFrontOfNotebook() {
-    return (!_player.inCombat) &
-        (_player.position.x > 255) &
-        (_player.position.x < 290) &
-        (_player.position.y > 255) &
-        (_player.position.y < 280);
-  }
-
   ActionsObserver(MyGame game, MyKeyboardListener subject, Player player) {
-    _game = game;
     _keyboardListener = subject;
     subject.addObserver(this);
     _player = player;
+
+    _keyA = MoveLeftCommand(player);
+    _keyD = MoveRightCommand(player);
+    _keyW = MoveUpCommand(player);
+    _keyS = MoveDownCommand(player);
+    _keySpace = AttackCommand(player);
+    _keyF = InteractCommand(game, player);
   }
 
   void update(Set<String> keysPressed) {
