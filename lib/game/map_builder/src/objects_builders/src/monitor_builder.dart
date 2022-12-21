@@ -1,35 +1,35 @@
 import '../../../../my_game.dart';
-import '../../../map_maker.dart';
-import '../../objects_factories/factories.dart';
+import '../../../map_builder.dart';
+import '../../objects_facades/facades.dart';
 
-class MonitorsMakers implements Maker<MonitorComponent> {
+class MonitorBuilder implements Builder<MonitorComponent> {
   late final MyGame _game;
-  late final MonitorFactory _factory;
+  late final MonitorFacade _facade;
 
-  MonitorsMakers(MyGame game) {
+  MonitorBuilder(MyGame game) {
     _game = game;
-    _factory = MonitorFactory(game);
+    _facade = MonitorFacade(game);
   }
 
   @override
   List<MonitorComponent> make() {
     _game.logger.log('Gerando monitores');
-    final squared2VerticalBlackMonitors = _factory
+    final squared2VerticalBlackMonitors = _facade
         .createThreeVerticalBlackMonitors(tilePositionX: 15, tilePositionY: 6);
-    final squared2VerticalWhiteMonitors = _factory
+    final squared2VerticalWhiteMonitors = _facade
         .createThreeVerticalWhiteMonitors(tilePositionX: 16, tilePositionY: 6);
-    final squared2RightDiagonalBlackMonitor = _factory
+    final squared2RightDiagonalBlackMonitor = _facade
         .createRightDiagonalBlackMonitor(tilePositionX: 17, tilePositionY: 6);
-    final squared2RightDiagonalWhiteMonitor = _factory
+    final squared2RightDiagonalWhiteMonitor = _facade
         .createRightDiagonalWhiteMonitor(tilePositionX: 17, tilePositionY: 7);
 
-    final mainTableMonitors = _factory.createThreeHorizontalWhiteMonitors(
+    final mainTableMonitors = _facade.createThreeHorizontalWhiteMonitors(
         tilePositionX: 15, tilePositionY: 1);
     final mainTableKeyboard =
-        _factory.createHorizontalKeyboard(tilePositionX: 16, tilePositionY: 2);
+        _facade.createHorizontalKeyboard(tilePositionX: 16, tilePositionY: 2);
 
     final verticalTableNotebook =
-        _factory.createDiagonalNotebook(tilePositionX: 20, tilePositionY: 8);
+        _facade.createDiagonalNotebook(tilePositionX: 20, tilePositionY: 8);
 
     return [
       ...squared2VerticalBlackMonitors,

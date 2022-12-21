@@ -1,14 +1,14 @@
 import 'package:flame/components.dart';
 
 import '../../../../my_game.dart';
-import '../../../map_maker.dart';
-import 'object_factory.dart';
+import '../../../map_builder.dart';
+import 'object_facade.dart';
 
-class WallFactory implements ObjectFactory<WallComponent, WallComponentType> {
+class WallFacade implements ObjectFacade<WallComponent, WallComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 5;
 
-  WallFactory(MyGame game) {
+  WallFacade(MyGame game) {
     _game = game;
   }
 

@@ -1,15 +1,14 @@
 import 'package:flame/components.dart';
 
 import '../../../../my_game.dart';
-import '../../../map_maker.dart';
-import 'object_factory.dart';
+import '../../../map_builder.dart';
+import 'object_facade.dart';
 
-class TableFactory
-    implements ObjectFactory<TableComponent, TableComponentType> {
+class TableFacade implements ObjectFacade<TableComponent, TableComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 0;
 
-  TableFactory(MyGame game) {
+  TableFacade(MyGame game) {
     _game = game;
   }
 

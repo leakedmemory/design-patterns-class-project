@@ -2,14 +2,13 @@ import 'package:flame/input.dart';
 
 import '../../components/components.dart';
 import '../../../../my_game.dart';
-import 'object_factory.dart';
+import 'object_facade.dart';
 
-class BoardFactory
-    implements ObjectFactory<BoardComponent, BoardComponentType> {
+class BoardFacade implements ObjectFacade<BoardComponent, BoardComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 6;
 
-  BoardFactory(MyGame game) {
+  BoardFacade(MyGame game) {
     _game = game;
   }
 

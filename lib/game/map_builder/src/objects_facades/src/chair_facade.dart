@@ -1,15 +1,14 @@
 import 'package:flame/input.dart';
 
 import '../../../../my_game.dart';
-import '../../../map_maker.dart';
-import 'object_factory.dart';
+import '../../../map_builder.dart';
+import 'object_facade.dart';
 
-class ChairFactory
-    implements ObjectFactory<ChairComponent, ChairComponentType> {
+class ChairFacade implements ObjectFacade<ChairComponent, ChairComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 0;
 
-  ChairFactory(MyGame game) {
+  ChairFacade(MyGame game) {
     _game = game;
   }
 

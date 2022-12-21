@@ -9,7 +9,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'logger/logger.dart';
 import 'player/player.dart';
 import 'bosses/bosses.dart';
-import 'map_maker/map_maker.dart';
+import 'map_builder/map_builder.dart';
 import 'text_box.dart';
 
 class MyGame extends FlameGame
@@ -22,8 +22,8 @@ class MyGame extends FlameGame
   late TextBox _textBox2;
 
   // mapa
-  late final Maker _mapMaker = MapMaker(this);
-  late final _components = _mapMaker.make();
+  late final Builder _mapBuilder = MapBuilder(this);
+  late final _components = _mapBuilder.make();
   final _scenerySpritesPath = 'scenery.png';
   final _objectsSpritesPath = 'objects.png';
   final _tileSizeInPixels = 32.0;

@@ -1,4 +1,4 @@
-abstract class ObjectFactory<T, U> {
+abstract class ObjectFacade<T, U> {
   T createSpriteComponent(
       {required U type,
       required double tilePositionX,

@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 import '../../attack_strategy/attack_strategy.dart';
 import '../../bosses/bosses.dart';
-import '../../map_maker/map_maker.dart';
+import '../../map_builder/map_builder.dart';
 import '../../my_game.dart';
 import 'keyboard_listener.dart';
 import 'actions_observer.dart';

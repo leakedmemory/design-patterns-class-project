@@ -1,15 +1,15 @@
 import 'package:flame/input.dart';
 
 import '../../../../my_game.dart';
-import '../../../map_maker.dart';
-import 'object_factory.dart';
+import '../../../map_builder.dart';
+import 'object_facade.dart';
 
-class MonitorFactory
-    implements ObjectFactory<MonitorComponent, MonitorComponentType> {
+class MonitorFacade
+    implements ObjectFacade<MonitorComponent, MonitorComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 6;
 
-  MonitorFactory(MyGame game) {
+  MonitorFacade(MyGame game) {
     _game = game;
   }
 

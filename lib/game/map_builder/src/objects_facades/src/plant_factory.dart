@@ -1,15 +1,14 @@
 import 'package:flame/input.dart';
 
 import '../../../../my_game.dart';
-import 'object_factory.dart';
+import 'object_facade.dart';
 import '../../components/components.dart';
 
-class PlantFactory
-    implements ObjectFactory<PlantComponent, PlantComponentType> {
+class PlantFacade implements ObjectFacade<PlantComponent, PlantComponentType> {
   late final MyGame _game;
   static const int _defaultPriority = 0;
 
-  PlantFactory(MyGame game) {
+  PlantFacade(MyGame game) {
     _game = game;
   }
 
