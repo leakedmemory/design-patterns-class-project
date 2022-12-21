@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 
-import '../../../my_game.dart';
+import '../../../../my_game.dart';
 
 abstract class MyComponent extends SpriteComponent {
   late final MyGame _game;
@@ -21,7 +21,7 @@ abstract class MyComponent extends SpriteComponent {
     priority = _priority;
   }
 
-  Vector2 getSpriteTile(int x, int y) {
-    return Vector2(_game.tileSizeInPixels * x, _game.tileSizeInPixels * y);
+  Vector2 getSpriteTile(Vector2 tilePosition) {
+    return tilePosition * _game.tileSizeInPixels;
   }
 }

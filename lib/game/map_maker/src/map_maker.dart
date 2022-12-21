@@ -1,15 +1,8 @@
 import 'package:flame/components.dart';
 
 import '../../my_game.dart';
-import 'abstractions/maker.dart';
-import 'boards_maker.dart';
-import 'chairs_maker.dart';
-import 'computers_maker.dart';
-import 'plants_maker.dart';
-import 'printers_maker.dart';
-import 'shelves_maker.dart';
-import 'tables_maker.dart';
-import 'walls_maker.dart';
+import 'maker.dart';
+import 'objects_makers/makers.dart';
 
 class MapMaker implements Maker<Component> {
   late final MyGame _game;
@@ -28,7 +21,7 @@ class MapMaker implements Maker<Component> {
 
     _wallsMaker = WallsMaker(game);
     _tablesMaker = TablesMaker(game);
-    _computersMaker = ComputersMaker(game);
+    _computersMaker = MonitorsMakers(game);
     _printersMaker = PrintersMaker(game);
     _plantsMaker = PlantsMaker(game);
     _shelvesMaker = ShelvesMaker(game);

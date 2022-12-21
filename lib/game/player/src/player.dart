@@ -166,7 +166,7 @@ class Player extends SpriteAnimationComponent
       }
     }
 
-    if (other is Wall) {
+    if (other is WallComponent) {
       if (position.y < _game.tileSizeInPixels) {
         position.y = _game.tileSizeInPixels;
       }

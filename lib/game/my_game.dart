@@ -22,7 +22,8 @@ class MyGame extends FlameGame
   late TextBox _textBox2;
 
   // mapa
-  late final _components = MapMaker(this).make();
+  late final Maker _mapMaker = MapMaker(this);
+  late final _components = _mapMaker.make();
   final _scenerySpritesPath = 'scenery.png';
   final _objectsSpritesPath = 'objects.png';
   final _tileSizeInPixels = 32.0;
@@ -103,10 +104,10 @@ class MyGame extends FlameGame
   }
 
   bool _isRemovable(Component component) {
-    return (component is! Wall) &
-        (component is! Plant) &
-        (component is! Shelf) &
-        (component is! Board);
+    return (component is! WallComponent) &
+        (component is! PlantComponent) &
+        (component is! ShelfComponent) &
+        (component is! BoardComponent);
   }
 
   void startGame() {
