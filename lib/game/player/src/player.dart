@@ -89,13 +89,13 @@ class Player extends SpriteAnimationComponent
         row: rowAnimation + 8, stepTime: 0.2, from: 6, to: 8);
 
     attackUpAnimation =
-        sprite.createAnimation(row: rowAnimation + 4, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 4, stepTime: 0.06);
     attackDownAnimation =
-        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 2, stepTime: 0.06);
     attackRightAnimation =
-        sprite.createAnimation(row: rowAnimation + 12, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 12, stepTime: 0.06);
     attackLeftAnimation =
-        sprite.createAnimation(row: rowAnimation + 10, stepTime: 0.1);
+        sprite.createAnimation(row: rowAnimation + 10, stepTime: 0.06);
 
     if (health == 2) {
       animation = idleUp;

@@ -30,7 +30,7 @@ class SlapAttack implements AttackStrategy {
     }
 
     final SpriteAnimation nowIdle = _player.animation!;
-    Timer(const Duration(milliseconds: 800),
+    Timer(const Duration(milliseconds: 500),
         () => _player.animation == nowIdle ? _player.animation = oldIdle : {});
   }
 }
