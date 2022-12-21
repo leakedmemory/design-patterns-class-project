@@ -28,12 +28,20 @@ class ActionsObserver {
       }
     },
     'F': () {
-      if (!_player.inCombat) {
+      if (_playerIsInFrontOfNotebook()) {
         _player.game.startCombatWithHD();
         _player.inCombat = true;
       }
     },
   };
+
+  bool _playerIsInFrontOfNotebook() {
+    return (!_player.inCombat) &
+        (_player.position.x > 255) &
+        (_player.position.x < 290) &
+        (_player.position.y > 255) &
+        (_player.position.y < 280);
+  }
 
   ActionsObserver(subject, Player player) {
     _keyboardListener = subject;

@@ -103,10 +103,10 @@ class MyGame extends FlameGame
   }
 
   bool _isRemovable(Component component) {
-    return ((component is! Wall) &
+    return (component is! Wall) &
         (component is! Plant) &
         (component is! Shelf) &
-        (component is! Board));
+        (component is! Board);
   }
 
   void startGame() {
