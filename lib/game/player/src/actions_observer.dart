@@ -1,36 +1,9 @@
-import 'dart:async';
-
-import 'package:flame/widgets.dart';
-
 import 'keyboard_listener.dart';
 import 'player.dart';
 
-class MovementObserver {
+class ActionsObserver {
   late final CustomKeyboardListener _keyboardListener;
   late final Player _player;
-
-  late SpriteAnimation? oldIdle;
-  late SpriteAnimation? nowIdle;
-
-  void _attack() {
-    oldIdle = _player.animation;
-    if ((_player.animation == _player.upAnimation) |
-        (_player.animation == _player.idleUp)) {
-      _player.animation = _player.attackUpAnimation;
-    } else if ((_player.animation == _player.downAnimation) |
-        (_player.animation == _player.idleDown)) {
-      _player.animation = _player.attackDownAnimation;
-    } else if ((_player.animation == _player.rightAnimation) |
-        (_player.animation == _player.idleRight)) {
-      _player.animation = _player.attackRightAnimation;
-    } else if ((_player.animation == _player.leftAnimation) |
-        (_player.animation == _player.idleLeft)) {
-      _player.animation = _player.attackLeftAnimation;
-    }
-    nowIdle = _player.animation;
-    Timer(const Duration(milliseconds: 800),
-        () => _player.animation == nowIdle ? _player.animation = oldIdle : {});
-  }
 
   late final Map<String, Function> _validMovements = {
     'A': () {
@@ -51,18 +24,18 @@ class MovementObserver {
     },
     ' ': () {
       if (_player.inCombat) {
-        _attack();
+        _player.attackStrategy.attack();
       }
     },
     'F': () {
       if (!_player.inCombat) {
-        _player.game.startCombat();
+        _player.game.startCombatWithHD();
         _player.inCombat = true;
       }
     },
   };
 
-  MovementObserver(subject, Player player) {
+  ActionsObserver(subject, Player player) {
     _keyboardListener = subject;
     subject.addObserver(this);
     _player = player;

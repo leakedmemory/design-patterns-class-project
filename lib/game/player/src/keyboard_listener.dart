@@ -1,16 +1,16 @@
 import 'package:flutter/services.dart';
 
-import 'movement_observer.dart';
+import 'actions_observer.dart';
 
 class CustomKeyboardListener {
-  final List<MovementObserver> _observers = [];
+  final List<ActionsObserver> _observers = [];
   late Set<LogicalKeyboardKey> keysPressed;
 
-  void addObserver(MovementObserver observer) {
+  void addObserver(ActionsObserver observer) {
     _observers.add(observer);
   }
 
-  void removeObserver(MovementObserver observer) {
+  void removeObserver(ActionsObserver observer) {
     _observers.remove(observer);
   }
 

@@ -6,17 +6,18 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
+import '../../attack_strategy/attack_strategy.dart';
 import '../../bosses/bosses.dart';
 import '../../map_maker/map_maker.dart';
 import '../../my_game.dart';
 import 'keyboard_listener.dart';
-import 'movement_observer.dart';
+import 'actions_observer.dart';
 
 class Player extends SpriteAnimationComponent
     with KeyboardHandler, CollisionCallbacks {
   late final CustomKeyboardListener _keyboardListener;
   // ignore: unused_field
-  late final MovementObserver _movementObserver;
+  late final ActionsObserver _movementObserver;
 
   late final MyGame _game;
 
@@ -24,6 +25,7 @@ class Player extends SpriteAnimationComponent
 
   bool _vulnerable = true;
   bool inCombat = false;
+  late AttackStrategy attackStrategy;
 
   bool canWalk = false;
   late double moveSpeed = 135.0;
@@ -60,7 +62,7 @@ class Player extends SpriteAnimationComponent
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
     _keyboardListener = CustomKeyboardListener();
-    _movementObserver = MovementObserver(_keyboardListener, this);
+    _movementObserver = ActionsObserver(_keyboardListener, this);
 
     // debugMode = true;
   }

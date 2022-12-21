@@ -144,10 +144,11 @@ class MyGame extends FlameGame
             });
   }
 
-  void startCombat() {
-    logger.log('Iniciando combate');
-    logger.log('Adicionando inimigo');
+  void startCombatWithHD() {
+    logger.log('Iniciando combate com HD');
+    logger.log('Adicionando inimigo no mapa');
     add(_hd);
+    _player.attackStrategy = SlapAttack(_player);
     mapComponents(2);
   }
 }
