@@ -15,13 +15,11 @@ import 'actions_observer.dart';
 
 class Player extends SpriteAnimationComponent
     with KeyboardHandler, CollisionCallbacks {
-  late final CustomKeyboardListener _keyboardListener;
+  late final MyKeyboardListener _keyboardListener;
   // ignore: unused_field
   late final ActionsObserver _movementObserver;
 
   late final MyGame _game;
-
-  MyGame get game => _game;
 
   bool _vulnerable = true;
   bool inCombat = false;
@@ -61,8 +59,8 @@ class Player extends SpriteAnimationComponent
 
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
-    _keyboardListener = CustomKeyboardListener();
-    _movementObserver = ActionsObserver(_keyboardListener, this);
+    _keyboardListener = MyKeyboardListener();
+    _movementObserver = ActionsObserver(_game, _keyboardListener, this);
 
     // debugMode = true;
   }

@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 import 'actions_observer.dart';
 
-class CustomKeyboardListener {
+class MyKeyboardListener {
   final List<ActionsObserver> _observers = [];
   late Set<LogicalKeyboardKey> keysPressed;
 

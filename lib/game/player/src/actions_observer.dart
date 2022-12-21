@@ -1,8 +1,10 @@
+import '../../my_game.dart';
 import 'keyboard_listener.dart';
 import 'player.dart';
 
 class ActionsObserver {
-  late final CustomKeyboardListener _keyboardListener;
+  late final MyKeyboardListener _keyboardListener;
+  late final MyGame _game;
   late final Player _player;
 
   late final Map<String, Function> _validMovements = {
@@ -29,7 +31,7 @@ class ActionsObserver {
     },
     'F': () {
       if (_playerIsInFrontOfNotebook()) {
-        _player.game.startCombatWithHD();
+        _game.startCombatWithHD();
         _player.inCombat = true;
       }
     },
@@ -43,7 +45,8 @@ class ActionsObserver {
         (_player.position.y < 280);
   }
 
-  ActionsObserver(subject, Player player) {
+  ActionsObserver(MyGame game, MyKeyboardListener subject, Player player) {
+    _game = game;
     _keyboardListener = subject;
     subject.addObserver(this);
     _player = player;
@@ -74,5 +77,5 @@ class ActionsObserver {
     }
   }
 
-  CustomKeyboardListener get keyboardListener => _keyboardListener;
+  MyKeyboardListener get keyboardListener => _keyboardListener;
 }
