@@ -1,4 +1,3 @@
-import 'dart:async' show Timer;
 import 'package:flame/components.dart' hide Timer;
 import 'package:flutter/cupertino.dart';
 
@@ -44,9 +43,7 @@ class TextBox extends TextBoxComponent {
   void update(double dt) {
     super.update(dt);
     if (finished) {
-      _time == 1
-          ? Timer(const Duration(seconds: 3), () => _game.remove(this))
-          : {_game.remove(this)};
+      _time == 1 ? {} : {_game.remove(this)};
       _player.canWalk = true;
     }
   }
