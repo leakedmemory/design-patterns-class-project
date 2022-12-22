@@ -9,6 +9,7 @@ class AttackObject extends SpriteAnimationComponent with CollisionCallbacks {
 
   AttackObject(Player player) : super(size: Vector2.all(32)) {
     _player = player;
+    // debugMode = true;
   }
 
   @override
@@ -26,20 +27,20 @@ class AttackObject extends SpriteAnimationComponent with CollisionCallbacks {
     position.y += 18;
     if ((_player.animation == _player.idleUp) |
         (_player.animation == _player.upAnimation)) {
-      position.y -= 45;
-      hitbox.size = Vector2(32, 8);
+      position.y -= 55;
+      hitbox.size = Vector2(32, 12);
     } else if ((_player.animation == _player.idleDown) |
         (_player.animation == _player.downAnimation)) {
-      position.y += 55;
-      hitbox.size = Vector2(32, 8);
+      position.y += 65;
+      hitbox.size = Vector2(32, 12);
     } else if ((_player.animation == _player.idleLeft) |
         (_player.animation == _player.leftAnimation)) {
-      position.x -= 50;
-      hitbox.size = Vector2(8, 32);
+      position.x -= 60;
+      hitbox.size = Vector2(12, 32);
     } else if ((_player.animation == _player.idleRight) |
         (_player.animation == _player.rightAnimation)) {
-      position.x += 65;
-      hitbox.size = Vector2(8, 32);
+      position.x += 75;
+      hitbox.size = Vector2(12, 32);
     }
     super.update(dt);
   }
