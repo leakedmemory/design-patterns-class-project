@@ -17,7 +17,7 @@ class Player extends SpriteAnimationComponent
     with KeyboardHandler, CollisionCallbacks {
   late final MyKeyboardListener _keyboardListener;
   // ignore: unused_field
-  late final ActionsObserver _movementObserver;
+  late final ActionsObserver _actionsObserver;
 
   late final MyGame _game;
 
@@ -60,7 +60,7 @@ class Player extends SpriteAnimationComponent
   Player(MyGame game) : super(size: Vector2.all(game.tileSizeInPixels)) {
     _game = game;
     _keyboardListener = MyKeyboardListener();
-    _movementObserver = ActionsObserver(_game, _keyboardListener, this);
+    _actionsObserver = ActionsObserver(_game, _keyboardListener, this);
 
     // debugMode = true;
   }

@@ -44,7 +44,7 @@ class ActionsObserver {
     _keyD = MoveRightCommand(player);
     _keyW = MoveUpCommand(player);
     _keyS = MoveDownCommand(player);
-    _keySpace = AttackCommand(player);
+    _keySpace = AttackCommand(player, game);
     _keyF = InteractCommand(game, player);
   }
 
