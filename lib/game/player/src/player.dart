@@ -157,7 +157,7 @@ class Player extends SpriteAnimationComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is HD) {
+    if (other is CPU) {
       if (_vulnerable) {
         // tempo de invencibilidade depois de tomar dano
         Timer(const Duration(seconds: 2), () => _vulnerable = true);
