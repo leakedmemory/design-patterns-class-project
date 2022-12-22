@@ -12,8 +12,8 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
   late final ShapeHitbox hitbox;
 
-  late double _moveSpeed = 115.0;
-  Vector2 _movement = Vector2.zero();
+  late final double _moveSpeed = 115.0;
+  final Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
   late Vector2 target;
