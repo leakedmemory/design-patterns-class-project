@@ -14,7 +14,7 @@ class ActionsObserver {
   late final Command _keySpace;
   late final Command _keyF;
 
-  late final Map<String, Function> _validMovements = {
+  late final Map<String, Function> _validActions = {
     'A': () {
       _keyA.execute();
     },
@@ -66,7 +66,7 @@ class ActionsObserver {
 
   void _move(Set<String> keysPressed) {
     for (final key in keysPressed) {
-      final movement = _validMovements[key];
+      final movement = _validActions[key];
       if (movement != null) {
         movement();
       }

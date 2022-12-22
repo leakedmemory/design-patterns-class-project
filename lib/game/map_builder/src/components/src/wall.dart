@@ -17,15 +17,15 @@ class WallComponent extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<WallComponentType, Sprite> _types = {
-    WallComponentType.brownTop: _game.gameSprites(
+    WallComponentType.brownTop: _game.getSpriteFromCache(
         _game.scenerySpritePath, getSpriteTile(Vector2(1, 9))),
-    WallComponentType.brownBottom: _game.gameSprites(
+    WallComponentType.brownBottom: _game.getSpriteFromCache(
         _game.scenerySpritePath, getSpriteTile(Vector2(1, 10))),
-    WallComponentType.whiteLeft: _game.gameSprites(
+    WallComponentType.whiteLeft: _game.getSpriteFromCache(
         _game.scenerySpritePath, getSpriteTile(Vector2(7, 2))),
-    WallComponentType.whiteRight: _game.gameSprites(
+    WallComponentType.whiteRight: _game.getSpriteFromCache(
         _game.scenerySpritePath, getSpriteTile(Vector2(9, 2))),
-    WallComponentType.whiteBottom: _game.gameSprites(
+    WallComponentType.whiteBottom: _game.getSpriteFromCache(
         _game.scenerySpritePath, getSpriteTile(Vector2(8, 3))),
   };
 

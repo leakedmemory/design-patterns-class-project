@@ -15,13 +15,13 @@ class BoardComponent extends MyComponent {
   late final MyGame _game;
 
   late final Map<BoardComponentType, Sprite> _types = {
-    BoardComponentType.pieTopLeft: _game.gameSprites(
+    BoardComponentType.pieTopLeft: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(9, 14))),
-    BoardComponentType.pieTopRight: _game.gameSprites(
+    BoardComponentType.pieTopRight: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 14))),
-    BoardComponentType.pieBottomLeft: _game.gameSprites(
+    BoardComponentType.pieBottomLeft: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(9, 15))),
-    BoardComponentType.pieBottomRight: _game.gameSprites(
+    BoardComponentType.pieBottomRight: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 15))),
   };
 

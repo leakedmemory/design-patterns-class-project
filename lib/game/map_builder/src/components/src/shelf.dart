@@ -24,29 +24,29 @@ class ShelfComponent extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<ShelfComponentType, Sprite> _types = {
-    ShelfComponentType.fullTopLeftCorner: _game.gameSprites(
+    ShelfComponentType.fullTopLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 12))),
-    ShelfComponentType.fullTopRightCorner: _game.gameSprites(
+    ShelfComponentType.fullTopRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 12))),
-    ShelfComponentType.fullLeftCorner: _game.gameSprites(
+    ShelfComponentType.fullLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 13))),
-    ShelfComponentType.fullRightCorner: _game.gameSprites(
+    ShelfComponentType.fullRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 13))),
-    ShelfComponentType.fullBottomLeftCorner: _game.gameSprites(
+    ShelfComponentType.fullBottomLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 14))),
-    ShelfComponentType.fullBottomRightCorner: _game.gameSprites(
+    ShelfComponentType.fullBottomRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 14))),
-    ShelfComponentType.emptyTopLeftCorner: _game.gameSprites(
+    ShelfComponentType.emptyTopLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 15))),
-    ShelfComponentType.emptyTopRightCorner: _game.gameSprites(
+    ShelfComponentType.emptyTopRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 15))),
-    ShelfComponentType.emptyLeftCorner: _game.gameSprites(
+    ShelfComponentType.emptyLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 16))),
-    ShelfComponentType.emptyRightCorner: _game.gameSprites(
+    ShelfComponentType.emptyRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 16))),
-    ShelfComponentType.emptyBottomLeftCorner: _game.gameSprites(
+    ShelfComponentType.emptyBottomLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(7, 17))),
-    ShelfComponentType.emptyBottomRightCorner: _game.gameSprites(
+    ShelfComponentType.emptyBottomRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(8, 17))),
   };
 

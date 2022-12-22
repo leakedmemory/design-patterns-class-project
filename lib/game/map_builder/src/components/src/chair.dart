@@ -13,9 +13,9 @@ class ChairComponent extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<ChairComponentType, Sprite> _types = {
-    ChairComponentType.brownUpTop: _game.gameSprites(
+    ChairComponentType.brownUpTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(1, 10))),
-    ChairComponentType.brownUpBottom: _game.gameSprites(
+    ChairComponentType.brownUpBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(1, 11))),
   };
 

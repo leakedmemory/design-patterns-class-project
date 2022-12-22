@@ -20,21 +20,25 @@ class PrinterComponent extends MyComponent {
   late final MyGame _game;
 
   late final Map<PrinterComponentType, Sprite> _types = {
-    PrinterComponentType.coloredPrinterWithPCTopLeft: _game.gameSprites(
+    PrinterComponentType.coloredPrinterWithPCTopLeft: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 30))),
-    PrinterComponentType.coloredPrinterWithPCBottomLeft: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(10, 31))),
-    PrinterComponentType.coloredPrinterWithPCTopMiddle: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(11, 30))),
-    PrinterComponentType.coloredPrinterWithPCBottomMiddle: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(11, 31))),
-    PrinterComponentType.coloredPrinterWithPCTopRight: _game.gameSprites(
+    PrinterComponentType.coloredPrinterWithPCBottomLeft:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(10, 31))),
+    PrinterComponentType.coloredPrinterWithPCTopMiddle:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(11, 30))),
+    PrinterComponentType.coloredPrinterWithPCBottomMiddle:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(11, 31))),
+    PrinterComponentType.coloredPrinterWithPCTopRight: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(12, 30))),
-    PrinterComponentType.coloredPrinterWithPCBottomRight: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(12, 31))),
-    PrinterComponentType.verticalBlackPrinterTop: _game.gameSprites(
+    PrinterComponentType.coloredPrinterWithPCBottomRight:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(12, 31))),
+    PrinterComponentType.verticalBlackPrinterTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(13, 36))),
-    PrinterComponentType.verticalBlackPrinterBottom: _game.gameSprites(
+    PrinterComponentType.verticalBlackPrinterBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(13, 37))),
   };
 

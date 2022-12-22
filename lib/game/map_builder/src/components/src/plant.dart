@@ -22,21 +22,21 @@ class PlantComponent extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<PlantComponentType, Sprite> _types = {
-    PlantComponentType.littlePlantTop: _game.gameSprites(
+    PlantComponentType.littlePlantTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 10))),
-    PlantComponentType.littlePlantBottom: _game.gameSprites(
+    PlantComponentType.littlePlantBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 11))),
-    PlantComponentType.bigPlantTop: _game.gameSprites(
+    PlantComponentType.bigPlantTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 7))),
-    PlantComponentType.bigPlantMiddle: _game.gameSprites(
+    PlantComponentType.bigPlantMiddle: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 8))),
-    PlantComponentType.bigPlantBottom: _game.gameSprites(
+    PlantComponentType.bigPlantBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 9))),
-    PlantComponentType.cactusTop: _game.gameSprites(
+    PlantComponentType.cactusTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 12))),
-    PlantComponentType.cactusMiddle: _game.gameSprites(
+    PlantComponentType.cactusMiddle: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 13))),
-    PlantComponentType.cactusBottom: _game.gameSprites(
+    PlantComponentType.cactusBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(6, 14))),
   };
 

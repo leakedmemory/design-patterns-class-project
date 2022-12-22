@@ -87,7 +87,7 @@ class MyGame extends FlameGame
     startGame();
   }
 
-  Sprite gameSprites(String spritePath, Vector2 position) {
+  Sprite getSpriteFromCache(String spritePath, Vector2 position) {
     return Sprite(Flame.images.fromCache(spritePath),
         srcPosition: position, srcSize: Vector2.all(_tileSizeInPixels));
   }

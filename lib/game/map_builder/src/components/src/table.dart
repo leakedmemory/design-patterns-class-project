@@ -32,43 +32,43 @@ class TableComponent extends MyComponent with CollisionCallbacks {
   late final MyGame _game;
 
   late final Map<TableComponentType, Sprite> _types = {
-    TableComponentType.topLeftCornerTurn: _game.gameSprites(
+    TableComponentType.topLeftCornerTurn: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(0, 4))),
-    TableComponentType.leftCornerTurn: _game.gameSprites(
+    TableComponentType.leftCornerTurn: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(0, 5))),
-    TableComponentType.turnToRight: _game.gameSprites(
+    TableComponentType.turnToRight: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(0, 6))),
-    TableComponentType.doubleFeet: _game.gameSprites(
+    TableComponentType.doubleFeet: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(0, 7))),
-    TableComponentType.topLeftCorner: _game.gameSprites(
+    TableComponentType.topLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(1, 4))),
-    TableComponentType.topCorner: _game.gameSprites(
+    TableComponentType.topCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(2, 4))),
-    TableComponentType.topRightCorner: _game.gameSprites(
+    TableComponentType.topRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(3, 4))),
-    TableComponentType.leftCorner: _game.gameSprites(
+    TableComponentType.leftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(1, 5))),
-    TableComponentType.center: _game.gameSprites(
+    TableComponentType.center: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(2, 5))),
-    TableComponentType.rightCorner: _game.gameSprites(
+    TableComponentType.rightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(3, 5))),
-    TableComponentType.bottomLeftCorner: _game.gameSprites(
+    TableComponentType.bottomLeftCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(1, 6))),
-    TableComponentType.bottomCorner: _game.gameSprites(
+    TableComponentType.bottomCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(2, 6))),
-    TableComponentType.bottomRightCorner: _game.gameSprites(
+    TableComponentType.bottomRightCorner: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(3, 6))),
-    TableComponentType.topLeftCornerCoffee: _game.gameSprites(
+    TableComponentType.topLeftCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 38))),
-    TableComponentType.topRightCornerCoffee: _game.gameSprites(
+    TableComponentType.topRightCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(11, 38))),
-    TableComponentType.middleLeftCornerCoffee: _game.gameSprites(
+    TableComponentType.middleLeftCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 39))),
-    TableComponentType.middleRightCornerCoffee: _game.gameSprites(
+    TableComponentType.middleRightCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(11, 39))),
-    TableComponentType.bottomLeftCornerCoffee: _game.gameSprites(
+    TableComponentType.bottomLeftCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(10, 40))),
-    TableComponentType.bottomRightCornerCoffee: _game.gameSprites(
+    TableComponentType.bottomRightCornerCoffee: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(11, 40))),
   };
 

@@ -29,33 +29,42 @@ class MonitorComponent extends MyComponent {
   late final MyGame _game;
 
   late final Map<MonitorComponentType, Sprite> _types = {
-    MonitorComponentType.threeVerticalBlackMonitorsTop: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(10, 35))),
-    MonitorComponentType.threeVerticalBlackMonitorsMiddle: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(10, 36))),
-    MonitorComponentType.threeVerticalBlackMonitorsBottom: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(10, 37))),
-    MonitorComponentType.threeVerticalWhiteMonitorsTop: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(11, 35))),
-    MonitorComponentType.threeVerticalWhiteMonitorsMiddle: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(11, 36))),
-    MonitorComponentType.threeVerticalWhiteMonitorsBottom: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(11, 37))),
-    MonitorComponentType.rightDiagonalBlackMonitor: _game.gameSprites(
+    MonitorComponentType.threeVerticalBlackMonitorsTop:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(10, 35))),
+    MonitorComponentType.threeVerticalBlackMonitorsMiddle:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(10, 36))),
+    MonitorComponentType.threeVerticalBlackMonitorsBottom:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(10, 37))),
+    MonitorComponentType.threeVerticalWhiteMonitorsTop:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(11, 35))),
+    MonitorComponentType.threeVerticalWhiteMonitorsMiddle:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(11, 36))),
+    MonitorComponentType.threeVerticalWhiteMonitorsBottom:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(11, 37))),
+    MonitorComponentType.rightDiagonalBlackMonitor: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(12, 35))),
-    MonitorComponentType.rightDiagonalWhiteMonitor: _game.gameSprites(
+    MonitorComponentType.rightDiagonalWhiteMonitor: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(12, 36))),
-    MonitorComponentType.threeHorizontalWhiteMonitorsLeft: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(13, 13))),
-    MonitorComponentType.threeHorizontalWhiteMonitorsMiddle: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(14, 13))),
-    MonitorComponentType.threeHorizontalWhiteMonitorsRight: _game.gameSprites(
-        _game.objectsSpritePath, getSpriteTile(Vector2(15, 13))),
-    MonitorComponentType.horizontalKeyboard: _game.gameSprites(
+    MonitorComponentType.threeHorizontalWhiteMonitorsLeft:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(13, 13))),
+    MonitorComponentType.threeHorizontalWhiteMonitorsMiddle:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(14, 13))),
+    MonitorComponentType.threeHorizontalWhiteMonitorsRight:
+        _game.getSpriteFromCache(
+            _game.objectsSpritePath, getSpriteTile(Vector2(15, 13))),
+    MonitorComponentType.horizontalKeyboard: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(14, 14))),
-    MonitorComponentType.diagonalNotebookTop: _game.gameSprites(
+    MonitorComponentType.diagonalNotebookTop: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(15, 17))),
-    MonitorComponentType.diagonalNotebookBottom: _game.gameSprites(
+    MonitorComponentType.diagonalNotebookBottom: _game.getSpriteFromCache(
         _game.objectsSpritePath, getSpriteTile(Vector2(15, 18))),
   };
 
