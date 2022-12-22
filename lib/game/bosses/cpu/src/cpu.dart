@@ -1,10 +1,12 @@
+import 'dart:async' show Timer;
 import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
+import 'package:flame/components.dart' hide Timer;
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
 import '../../../player/player.dart';
 import '../../../my_game.dart';
+import '../../../player/src/commands/src/attack_object.dart';
 
 class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
@@ -15,6 +17,8 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   Vector2 _velocity = Vector2.zero();
 
   late Vector2 target;
+  bool _vulnerable = true;
+  int _health = 3;
 
   late SpriteSheet sprite;
 
@@ -46,8 +50,8 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     // sem boné
     idleUp = sprite.createAnimation(row: 2, stepTime: 0.5, to: 1);
     idleDown = sprite.createAnimation(row: 0, stepTime: 0.5, to: 1);
-    idleRight = sprite.createAnimation(row: 5, stepTime: 0.5, from: 1, to: 2);
-    idleLeft = sprite.createAnimation(row: 4, stepTime: 0.5, from: 1, to: 2);
+    idleRight = sprite.createAnimation(row: 5, stepTime: 0.5, to: 2);
+    idleLeft = sprite.createAnimation(row: 4, stepTime: 0.5, to: 2);
 
     upAnimation = sprite.createAnimation(row: 1, stepTime: 0.2, to: 3);
     downAnimation = sprite.createAnimation(row: 0, stepTime: 0.2, to: 3);
@@ -59,7 +63,16 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     attackRightAnimation = sprite.createAnimation(row: 6, stepTime: 0.06);
     attackLeftAnimation = sprite.createAnimation(row: 7, stepTime: 0.06);
 
+    idleDied = sprite.createAnimation(row: 10, stepTime: 0.06, to: 1);
     animation = idleDown;
+  }
+
+  void takeDamage() {
+    _health -= 1;
+    _game.logger.log('BOSS sofreu dano. Vida atual: $_health');
+    if (_health == 0) {
+      animation = idleDied;
+    }
   }
 
   @override
@@ -70,7 +83,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
         image: await Flame.images.load('cpu.png'),
         srcSize: Vector2.all(_game.tileSizeInPixels * 3));
 
-    hitbox = RectangleHitbox();
+    hitbox = RectangleHitbox(size: Vector2.all(70), position: center);
     add(hitbox);
 
     position = Vector2(300, 100);
@@ -84,13 +97,19 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
     _velocity = _movement * _moveSpeed;
     position += _velocity * dt;
     super.update(dt);
-
   }
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Player) {}
+    if (other is AttackObject) {
+      if (_vulnerable) {
+        Timer(const Duration(seconds: 1), () => _vulnerable = true);
+        takeDamage();
+        _vulnerable = false;
+      }
 
-    super.onCollision(intersectionPoints, other);
+      super.onCollision(intersectionPoints, other);
+    }
   }
 }

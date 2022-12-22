@@ -14,7 +14,7 @@ class InteractCommand implements Command {
   @override
   void execute() {
     if (_playerIsInFrontOfNotebook()) {
-      _game.startCombatWithHD();
+      _game.startCombatWithCPU();
       _player.inCombat = true;
     }
   }

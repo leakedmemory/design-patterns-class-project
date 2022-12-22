@@ -84,7 +84,7 @@ class MyGame extends FlameGame
 
     Timer(const Duration(milliseconds: 8500), () => add(_textBox2));
     Timer(const Duration(milliseconds: 14000), () => remove(_textBox2));
-    
+
     startGame();
   }
 
@@ -145,8 +145,8 @@ class MyGame extends FlameGame
             });
   }
 
-  void startCombatWithHD() {
-    logger.log('Iniciando combate com HD');
+  void startCombatWithCPU() {
+    logger.log('Iniciando combate com CPU');
     logger.log('Adicionando inimigo no mapa');
     add(_cpu);
     _player.attackStrategy = SlapAttack(_player);
