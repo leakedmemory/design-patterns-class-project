@@ -45,7 +45,7 @@ class TextBox extends TextBoxComponent {
     super.update(dt);
     if (finished) {
       _time == 1
-          ? Timer(const Duration(seconds: 3), () => _game.remove(this))
+          ? {}
           : {_game.remove(this)};
       _player.canWalk = true;
     }
