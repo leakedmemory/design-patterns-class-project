@@ -105,7 +105,7 @@ class Player extends SpriteAnimationComponent
     health -= 1;
     _game.logger.log('Player sofreu dano. Vida atual: $health');
     if (health == 0) {
-      idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 5, to: 6);
+      idleDied = sprite.createAnimation(row: 14, stepTime: 0.1, from: 4, to: 5);
       animation = idleDied;
       canWalk = false;
       moveSpeed = 0;

@@ -35,11 +35,11 @@ class AttackObject extends SpriteAnimationComponent with CollisionCallbacks {
       hitbox.size = Vector2(32, 8);
     } else if ((_player.animation == _player.idleLeft) |
         (_player.animation == _player.leftAnimation)) {
-      position.x -= 45;
+      position.x -= 50;
       hitbox.size = Vector2(8, 32);
     } else if ((_player.animation == _player.idleRight) |
         (_player.animation == _player.rightAnimation)) {
-      position.x += 60;
+      position.x += 65;
       hitbox.size = Vector2(8, 32);
     }
     super.update(dt);
