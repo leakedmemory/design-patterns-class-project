@@ -10,7 +10,7 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
   late final MyGame _game;
   late final ShapeHitbox hitbox;
 
-  late double _moveSpeed = 115.0;
+  late double _moveSpeed = 57.5;
   Vector2 _movement = Vector2.zero();
   Vector2 _velocity = Vector2.zero();
 
@@ -78,13 +78,59 @@ class CPU extends SpriteAnimationComponent with CollisionCallbacks {
 
     skin(sprite);
   }
+  void moveToPlayer() {
+    // Calcula a distância entre o boss e o personagem principal
+    double distance = target.distanceTo(position);
 
-  @override
+    // Se a distância for menor que a metade do tamanho do boss, para o movimento
+    if (distance < size.x / 2) {
+      _movement = Vector2.zero();
+      return;
+    }
+
+    // Calcula a direção que o boss deve seguir para alcançar o personagem principal
+    Vector2 direction = target - position;
+    direction = direction.normalized();
+
+    // Atualiza a direção de movimento do boss
+    _movement = direction;
+
+    // Verifica a direção de movimento e altera a animação correta
+    if (direction.x > 0 && direction.y > 0) {
+      // Direita e cima
+      animation = downAnimation;
+    } else if (direction.x > 0 && direction.y < 0) {
+      // Direita e baixo
+      animation = upAnimation;
+    } else if (direction.x < 0 && direction.y > 0) {
+      // Esquerda e cima
+      animation = downAnimation;
+    } else if (direction.x < 0 && direction.y < 0) {
+      // Esquerda e baixo
+      animation = upAnimation;
+    } else if (direction.x > 0) {
+      // Direita
+      animation = rightAnimation;
+    } else if (direction.x < 0) {
+      // Esquerda
+      animation = leftAnimation;
+    } else if (direction.y > 0) {
+      // Cima
+      animation = downAnimation;
+    } else if (direction.y < 0) {
+      // Baixo
+      animation = upAnimation;
+    }
+  }
+
+ @override
   void update(double dt) {
+    // Atualiza a posição do boss de acordo com a posição do personagem principal
+    moveToPlayer();
+
     _velocity = _movement * _moveSpeed;
     position += _velocity * dt;
     super.update(dt);
-
   }
 
   @override
