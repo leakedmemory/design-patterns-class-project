@@ -1,16 +1,19 @@
-# design_patterns_project
+# Um Jogo
 
-A new Flutter project.
+This was the final project of my design patterns university class, but it's clearly unfinished.
 
-## Getting Started
+## Running the game
 
-This project is a starting point for a Flutter application.
+To see what was done, you have to:
 
-A few resources to get you started if this is your first Flutter project:
+- Make sure that [Flutter](https://docs.flutter.dev/get-started/install) is installed
+- Clone this repo and get inside it
+- Run `flutter pub get` to install the dependencies
+- Run `flutter run` to start the game. It might take some time depending on your PC
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Authors
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Lohan Yrvine](https://github.com/Lohan-Yrvine) \
+[Rafael Berg](https://github.com/RafaelBerg) \
+[Lucas Alves](https://github.com/lucasfdelis)
+
